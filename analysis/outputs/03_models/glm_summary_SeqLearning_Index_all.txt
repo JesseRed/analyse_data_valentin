@@ -1,0 +1,41 @@
+                              OLS Regression Results                             
+=================================================================================
+Dep. Variable:     SeqLearning_Index_all   R-squared:                       0.350
+Model:                               OLS   Adj. R-squared:                  0.158
+Method:                    Least Squares   F-statistic:                     2.379
+Date:                   Mon, 16 Feb 2026   Prob (F-statistic):             0.0110
+Time:                           23:44:36   Log-Likelihood:                -351.21
+No. Observations:                     67   AIC:                             734.4
+Df Residuals:                         51   BIC:                             769.7
+Df Model:                             15                                         
+Covariance Type:                     HC3                                         
+=============================================================================================
+                                coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------
+Intercept                   -54.6527    143.438     -0.381      0.703    -335.786     226.480
+C(Group)[T.B]                37.4211     21.772      1.719      0.086      -5.252      80.094
+C(day)[T.2]                  31.7904     22.753      1.397      0.162     -12.805      76.385
+C(Group)[T.B]:C(day)[T.2]   -50.5116     30.416     -1.661      0.097    -110.127       9.104
+AES_sum                       4.6758      1.342      3.484      0.000       2.046       7.306
+Age                           0.2707      0.710      0.381      0.703      -1.121       1.662
+Gender_num                    4.4825     24.921      0.180      0.857     -44.362      53.327
+Depression_num                8.4036     25.400      0.331      0.741     -41.379      58.187
+SportsActivity_num           -3.3638     10.981     -0.306      0.759     -24.886      18.158
+fuglmayrshort_sum             4.3457      3.864      1.125      0.261      -3.227      11.918
+EQ5D_health_status           -0.6212      0.421     -1.476      0.140      -1.446       0.204
+GDS_sum                     -12.4315      4.409     -2.819      0.005     -21.074      -3.789
+MoCa_sum                     -1.7895      2.468     -0.725      0.468      -6.627       3.048
+MORE_sum                      1.0537      0.746      1.413      0.158      -0.408       2.516
+TSS                           2.8216      5.276      0.535      0.593      -7.518      13.162
+NIHSS                       -10.7257      5.567     -1.927      0.054     -21.637       0.186
+==============================================================================
+Omnibus:                        0.502   Durbin-Watson:                   1.750
+Prob(Omnibus):                  0.778   Jarque-Bera (JB):                0.627
+Skew:                          -0.023   Prob(JB):                        0.731
+Kurtosis:                       2.528   Cond. No.                     2.78e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 2.78e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

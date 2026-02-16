@@ -1,0 +1,8 @@
+outcome,n,formula
+SeqLearning_Index_all,67,SeqLearning_Index_all ~ C(Group) * C(day) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS
+RT_Slope_All,67,RT_Slope_All ~ C(Group) * C(day) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS
+RT_Delta_All,67,RT_Delta_All ~ C(Group) * C(day) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS
+ErrorRate_All,67,ErrorRate_All ~ C(Group) * C(day) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS
+IES,67,IES ~ C(Group) * C(day) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS
+Retention_General,31,Retention_General ~ C(Group) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS
+Retention_Sequence,31,Retention_Sequence ~ C(Group) + AES_sum + Age + Gender_num + Depression_num + SportsActivity_num + fuglmayrshort_sum + EQ5D_health_status + GDS_sum + MoCa_sum + MORE_sum + TSS + NIHSS

@@ -1,0 +1,39 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:     Retention_Sequence   R-squared:                       0.545
+Model:                            OLS   Adj. R-squared:                  0.196
+Method:                 Least Squares   F-statistic:                     2.480
+Date:                Mon, 16 Feb 2026   Prob (F-statistic):             0.0407
+Time:                        23:44:37   Log-Likelihood:                -180.48
+No. Observations:                  31   AIC:                             389.0
+Df Residuals:                      17   BIC:                             409.0
+Df Model:                          13                                         
+Covariance Type:                  HC3                                         
+======================================================================================
+                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept           -463.0733    659.158     -0.703      0.482   -1754.999     828.852
+C(Group)[T.B]         53.4338     72.396      0.738      0.460     -88.460     195.328
+AES_sum               -5.2945      5.593     -0.947      0.344     -16.256       5.667
+Age                    1.5640      5.150      0.304      0.761      -8.531      11.659
+Gender_num           -16.6824     88.432     -0.189      0.850    -190.005     156.640
+Depression_num         7.1108    149.372      0.048      0.962    -285.652     299.874
+SportsActivity_num   -65.4989     30.715     -2.132      0.033    -125.700      -5.298
+fuglmayrshort_sum     35.4696     18.297      1.939      0.053      -0.392      71.331
+EQ5D_health_status     0.7199      2.045      0.352      0.725      -3.288       4.728
+GDS_sum               16.1085     19.133      0.842      0.400     -21.392      53.609
+MoCa_sum              -3.8418      9.756     -0.394      0.694     -22.963      15.279
+MORE_sum               0.2976      2.837      0.105      0.916      -5.264       5.859
+TSS                   -6.8470     16.596     -0.413      0.680     -39.375      25.682
+NIHSS                 25.3218     14.476      1.749      0.080      -3.051      53.695
+==============================================================================
+Omnibus:                        0.854   Durbin-Watson:                   1.744
+Prob(Omnibus):                  0.652   Jarque-Bera (JB):                0.563
+Skew:                          -0.326   Prob(JB):                        0.755
+Kurtosis:                       2.895   Cond. No.                     3.13e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 3.13e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

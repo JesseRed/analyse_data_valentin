@@ -1,0 +1,5 @@
+scenario,n_participant_day,n_retention,long_session_excluded,seq_group_coef,Seq Group p,ret_group_coef,Retention Group p
+baseline,73,34,,37.42111268109015,0.086,53.433824646936806,0.460
+truncate_119,73,34,,39.1885597307101,0.072,54.71572251149703,0.446
+truncate_120,73,34,,39.379041620743095,0.070,54.4035865701755,0.449
+exclude_long_session,72,33,9_day1,38.877748193795966,0.083,60.80746025872989,0.411
