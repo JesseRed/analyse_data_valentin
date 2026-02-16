@@ -1,0 +1,9 @@
+{
+  "inventory_rows": 86,
+  "trial_rows": 70696,
+  "block_rows": 8824,
+  "participant_day_rows": 73,
+  "retention_rows": 34,
+  "glm_models": 7,
+  "mixed_model_success": true
+}

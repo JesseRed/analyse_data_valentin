@@ -1,0 +1,46 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  logRT   R-squared:                       0.264
+Model:                            OLS   Adj. R-squared:                  0.263
+Method:                 Least Squares   F-statistic:                     152.5
+Date:                Tue, 17 Feb 2026   Prob (F-statistic):               0.00
+Time:                        00:03:21   Log-Likelihood:                -2063.8
+No. Observations:                8506   AIC:                             4170.
+Df Residuals:                    8485   BIC:                             4318.
+Df Model:                          20                                         
+Covariance Type:            nonrobust                                         
+========================================================================================================================
+                                                           coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------------------------------------
+Intercept                                                7.6781      0.044    176.233      0.000       7.593       7.763
+C(Group)[T.B]                                            0.0251      0.020      1.284      0.199      -0.013       0.063
+C(day)[T.2]                                             -0.0676      0.019     -3.546      0.000      -0.105      -0.030
+C(condition)[T.structured]                              -0.0542      0.034     -1.607      0.108      -0.120       0.012
+C(Group)[T.B]:C(day)[T.2]                               -0.0161      0.027     -0.588      0.557      -0.070       0.038
+C(Group)[T.B]:C(condition)[T.structured]                -0.0257      0.022     -1.154      0.248      -0.069       0.018
+C(day)[T.2]:C(condition)[T.structured]                  -0.0426      0.022     -1.946      0.052      -0.085       0.000
+C(Group)[T.B]:C(day)[T.2]:C(condition)[T.structured]     0.0448      0.031      1.425      0.154      -0.017       0.106
+bs(BlockNumber, df=4)[0]                                -0.1139      0.048     -2.351      0.019      -0.209      -0.019
+bs(BlockNumber, df=4)[1]                                -0.0880      0.069     -1.278      0.201      -0.223       0.047
+bs(BlockNumber, df=4)[2]                                -0.2715      0.122     -2.217      0.027      -0.511      -0.031
+bs(BlockNumber, df=4)[3]                                -0.4833      0.127     -3.817      0.000      -0.732      -0.235
+C(condition)[T.structured]:bs(BlockNumber, df=4)[0]      0.0405      0.058      0.694      0.488      -0.074       0.155
+C(condition)[T.structured]:bs(BlockNumber, df=4)[1]     -0.1001      0.080     -1.259      0.208      -0.256       0.056
+C(condition)[T.structured]:bs(BlockNumber, df=4)[2]      0.1030      0.146      0.706      0.480      -0.183       0.389
+C(condition)[T.structured]:bs(BlockNumber, df=4)[3]     -0.1020      0.161     -0.633      0.527      -0.418       0.214
+Age                                                     -0.0017      0.000     -4.832      0.000      -0.002      -0.001
+AES_sum                                                  0.0136      0.000     31.828      0.000       0.013       0.014
+MoCa_sum                                                -0.0305      0.001    -33.198      0.000      -0.032      -0.029
+NIHSS                                                    0.0049      0.002      2.226      0.026       0.001       0.009
+TSS                                                     -0.0122      0.002     -5.754      0.000      -0.016      -0.008
+==============================================================================
+Omnibus:                       43.018   Durbin-Watson:                   0.438
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               51.507
+Skew:                          -0.106   Prob(JB):                     6.54e-12
+Kurtosis:                       3.317   Cond. No.                     5.08e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 5.08e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
