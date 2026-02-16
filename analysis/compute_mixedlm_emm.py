@@ -18,7 +18,7 @@ OUT_DIR = ROOT / "analysis" / "outputs" / "03_models"
 
 FORMULA = (
     "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-    " + Age + AES_sum + MoCa_sum + NIHSS + TSS"
+    " + Age + fuglmayrshort_sum + MoCa_sum"
 )
 
 
@@ -34,10 +34,10 @@ def normalize_meta() -> pd.DataFrame:
     else:
         meta["Age"] = pd.to_numeric(meta.get("Biomag_Untersuchung"), errors="coerce")
 
-    for col in ["AES_sum", "MoCa_sum", "TSS", "NIHSS"]:
+    for col in ["fuglmayrshort_sum", "MoCa_sum"]:
         meta[col] = pd.to_numeric(meta.get(col), errors="coerce")
 
-    keep = ["PID", "Group", "Age", "AES_sum", "MoCa_sum", "TSS", "NIHSS"]
+    keep = ["PID", "Group", "Age", "fuglmayrshort_sum", "MoCa_sum"]
     return meta[keep].copy()
 
 
@@ -60,10 +60,8 @@ def load_block_cov() -> pd.DataFrame:
             "day",
             "BlockNumber",
             "Age",
-            "AES_sum",
+            "fuglmayrshort_sum",
             "MoCa_sum",
-            "NIHSS",
-            "TSS",
         ]
     )
     return d
@@ -79,10 +77,8 @@ def build_emm_grid(d: pd.DataFrame) -> pd.DataFrame:
     # Use means of covariates and a representative mid-task block.
     cov_means = {
         "Age": float(d["Age"].mean()),
-        "AES_sum": float(d["AES_sum"].mean()),
+        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
         "MoCa_sum": float(d["MoCa_sum"].mean()),
-        "NIHSS": float(d["NIHSS"].mean()),
-        "TSS": float(d["TSS"].mean()),
     }
     block_number = float(d["BlockNumber"].mean())
 

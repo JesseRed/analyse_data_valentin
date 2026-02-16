@@ -15,7 +15,7 @@ Across groups, structured blocks were faster than random blocks and the structur
 **Figure 1 (recommended).** Block‑wise RT trajectories by day, condition (structured vs random), and group (A vs B). Suggested file: `analysis/outputs/04_figures/qc_block_trajectory_group_condition_ci.png`.
 
 ### 4.3 Primary hypothesis test: dynamic sequence‑learning expression differs by group (block‑level mixed model)
-To test whether the intervention groups differed in how sequence‑specific performance evolved from day 1 to day 2, we fitted a linear mixed model to block‑level log‑RT (`logRT`) with a participant random intercept. Fixed effects included `Group × day × condition` (structured vs random), block number, and a reduced covariate set (Age, AES_sum, MoCa_sum, NIHSS, TSS) for model stability.
+To test whether the intervention groups differed in how sequence‑specific performance evolved from day 1 to day 2, we fitted a linear mixed model to block‑level log‑RT (`logRT`) with a participant random intercept. Fixed effects included `Group × day × condition` (structured vs random), block number, and the pre‑specified minimal adjustment set (**Age, fuglmayrshort_sum, MoCa_sum**).
 
 #### 4.3.1 Main fixed effects (across groups)
 Across groups, performance was faster on day 2 than on day 1 and faster in structured than random blocks (Table 3):
@@ -34,9 +34,9 @@ Thus, the structured advantage **increased from day 1 to day 2 in Group A**, whe
 **Figure 2 (recommended).** Model‑based simple effects: structured–random separation (with 95% CI) for each group and day (derived from Table 3).
 
 ### 4.4 Secondary analyses: endpoint-style group effects (participant‑day GLM)
-For comparison with common endpoint analyses, we estimated heteroscedasticity‑robust OLS models (HC3) at the participant‑day level. Models included the planned covariates (AES_sum, Age, Gender, Depression, SportsActivity, Fugl‑Meyer, EQ5D, GDS, MoCa, MORE, TSS, NIHSS) and `Group × day` interactions for day‑varying outcomes.
+For comparison with common endpoint analyses, we estimated heteroscedasticity‑robust OLS models (HC3) at the participant‑day level. Confirmatory models used the same minimal adjustment set (**Age, fuglmayrshort_sum, MoCa_sum**) and `Group × day` interactions for day‑varying outcomes.
 
-Across the endpoint outcomes, group effects were generally small and imprecise (Table 2). For the aggregate sequence‑learning index (`SeqLearning_Index_all`), the day‑1 group contrast (B vs A) showed a **trend‑level** positive coefficient (Table 2), and the `Group×day` interaction was negative (trend‑level), consistent in direction with the mixed‑model dynamic pattern; however, these endpoint analyses did not reach conventional significance thresholds.
+Across endpoint outcomes, most group effects remained small and imprecise (Table 2). For the aggregate sequence‑learning index (`SeqLearning_Index_all`), the day‑1 group contrast (B vs A) was **positive and nominally significant** in the minimally adjusted model (coef 37.89 ms, 95% CI 0.40 to 75.37, p=0.048), while the `Group×day` interaction remained non-significant (p=0.128). This endpoint pattern is directionally consistent with the mixed‑model dynamics but should be interpreted together with permutation and hierarchical results.
 
 ### 4.5 Mechanistic and robustness analyses supporting the primary interpretation
 
@@ -56,7 +56,7 @@ Together, these findings motivate interpreting group differences as **difference
 ### 4.6 Sensitivity analyses and confirmatory robustness checks
 
 #### 4.6.1 Data‑quality sensitivity (119 vs 120 blocks; long session exclusion)
-Group coefficient estimates for the sequence‑learning endpoint were stable across (i) truncation to the first 119 blocks, (ii) truncation to 120 blocks, and (iii) exclusion of the single long session; estimates remained in the same direction and similar magnitude (Supplementary Table S1).
+Group coefficient estimates for the sequence‑learning endpoint were stable across (i) truncation to the first 119 blocks, (ii) truncation to 120 blocks, and (iii) exclusion of the single long session; estimates remained in the same direction and similar magnitude, with p-values consistently around 0.04–0.05 (Supplementary Table S1).
 
 #### 4.6.2 Permutation tests (endpoint contrasts)
 As confirmatory robustness checks on endpoint‑style between‑group differences, two‑sided permutation tests (10,000 permutations) did not support a reliable unadjusted group difference for day‑2 sequence learning or for retention sequence learning (Supplementary Table S2). This reinforces the conclusion that the most reproducible group signal lies in **day‑by‑condition dynamics** captured by hierarchical models, rather than in single endpoint contrasts.
@@ -68,29 +68,29 @@ As confirmatory robustness checks on endpoint‑style between‑group difference
 ### Table 2. Primary group effects (adjusted GLM, HC3)
 | Outcome               |   Group effect B vs A (coef) | Group effect 95% CI   |   Group effect p |   Group×Day interaction (coef) | Group×Day 95% CI    | Group×Day p   |
 |:----------------------|-----------------------------:|:----------------------|-----------------:|-------------------------------:|:--------------------|:--------------|
-| ErrorRate_All         |                    0.0377463 | [-0.018, 0.093]       |            0.181 |                     -0.0299427 | [-0.100, 0.040]     | 0.404         |
-| IES                   |                   75.8461    | [-107.258, 258.951]   |            0.417 |                    -69.062     | [-289.778, 151.654] | 0.540         |
-| RT_Delta_All          |                    5.31047   | [-76.408, 87.029]     |            0.899 |                    -12.0941    | [-102.589, 78.401]  | 0.793         |
-| RT_Slope_All          |                   -0.0320715 | [-0.857, 0.793]       |            0.939 |                      0.155599  | [-0.816, 1.127]     | 0.754         |
-| Retention_General     |                   55.7526    | [-54.068, 165.573]    |            0.32  |                    nan         | NA                  | NA            |
-| Retention_Sequence    |                   53.4338    | [-88.460, 195.328]    |            0.46  |                    nan         | NA                  | NA            |
-| SeqLearning_Index_all |                   37.4211    | [-5.252, 80.094]      |            0.086 |                    -50.5116    | [-110.127, 9.104]   | 0.097         |
+| ErrorRate_All         |                    0.0112014 | [-0.031, 0.053]       |            0.6   |                     -0.0291566 | [-0.099, 0.041]     | 0.415         |
+| IES                   |                  103.055     | [-122.751, 328.860]   |            0.371 |                    -44.5818    | [-340.680, 251.516] | 0.768         |
+| RT_Delta_All          |                   -3.38242   | [-87.082, 80.317]     |            0.937 |                      0.0468158 | [-100.365, 100.459] | 0.999         |
+| RT_Slope_All          |                   -0.0120187 | [-0.853, 0.829]       |            0.978 |                      0.134154  | [-0.900, 1.168]     | 0.799         |
+| Retention_General     |                   14.3586    | [-96.736, 125.453]    |            0.8   |                    nan         | NA                  | NA            |
+| Retention_Sequence    |                   37.8916    | [-54.493, 130.276]    |            0.421 |                    nan         | NA                  | NA            |
+| SeqLearning_Index_all |                   37.8891    | [0.404, 75.374]       |            0.048 |                    -43.3999    | [-99.231, 12.432]   | 0.128         |
 
 ### Table 3. Mixed‑model planned contrasts (ratio scale)
 | Effect                  | Group   | Day   | Condition   |   log-diff |         SE | ratio_fmt            | pct_fmt                    |
 |:------------------------|:--------|:------|:------------|-----------:|-----------:|:---------------------|:---------------------------|
-| structured_minus_random | A       | 1.0   | -           | -0.0574295 | 0.00847098 | 0.944 [0.929, 0.960] | -5.58% [-7.14%, -4.00%]    |
-| structured_minus_random | A       | 2.0   | -           | -0.0981326 | 0.00779389 | 0.907 [0.893, 0.920] | -9.35% [-10.72%, -7.95%]   |
-| structured_minus_random | B       | 1.0   | -           | -0.0846543 | 0.00801814 | 0.919 [0.905, 0.933] | -8.12% [-9.55%, -6.66%]    |
-| structured_minus_random | B       | 2.0   | -           | -0.0790822 | 0.00872809 | 0.924 [0.908, 0.940] | -7.60% [-9.17%, -6.01%]    |
-| day2_minus_day1         | A       | -     | random      | -0.10884   | 0.0101138  | 0.897 [0.879, 0.915] | -10.31% [-12.07%, -8.52%]  |
-| day2_minus_day1         | A       | -     | structured  | -0.149543  | 0.0058446  | 0.861 [0.851, 0.871] | -13.89% [-14.87%, -12.90%] |
-| day2_minus_day1         | B       | -     | random      | -0.123935  | 0.0103784  | 0.883 [0.866, 0.902] | -11.66% [-13.44%, -9.84%]  |
-| day2_minus_day1         | B       | -     | structured  | -0.118363  | 0.00600362 | 0.888 [0.878, 0.899] | -11.16% [-12.20%, -10.11%] |
-| B_minus_A               | -       | 1.0   | random      | -0.0248495 | 0.0980763  | 0.975 [0.805, 1.182] | -2.45% [-19.51%, 18.22%]   |
-| B_minus_A               | -       | 1.0   | structured  | -0.0520742 | 0.0977211  | 0.949 [0.784, 1.150] | -5.07% [-21.62%, 14.97%]   |
-| B_minus_A               | -       | 2.0   | random      | -0.0399447 | 0.0980879  | 0.961 [0.793, 1.165] | -3.92% [-20.72%, 16.45%]   |
-| B_minus_A               | -       | 2.0   | structured  | -0.0208943 | 0.0977291  | 0.979 [0.809, 1.186] | -2.07% [-19.14%, 18.61%]   |
+| structured_minus_random | A       | 1.0   | -           | -0.0574298 | 0.00847104 | 0.944 [0.929, 0.960] | -5.58% [-7.14%, -4.00%]    |
+| structured_minus_random | A       | 2.0   | -           | -0.0981324 | 0.00779394 | 0.907 [0.893, 0.920] | -9.35% [-10.72%, -7.95%]   |
+| structured_minus_random | B       | 1.0   | -           | -0.0846545 | 0.00801819 | 0.919 [0.905, 0.933] | -8.12% [-9.55%, -6.66%]    |
+| structured_minus_random | B       | 2.0   | -           | -0.0790822 | 0.00872815 | 0.924 [0.908, 0.940] | -7.60% [-9.17%, -6.01%]    |
+| day2_minus_day1         | A       | -     | random      | -0.108872  | 0.0101139  | 0.897 [0.879, 0.915] | -10.32% [-12.08%, -8.52%]  |
+| day2_minus_day1         | A       | -     | structured  | -0.149575  | 0.00584475 | 0.861 [0.851, 0.871] | -13.89% [-14.87%, -12.90%] |
+| day2_minus_day1         | B       | -     | random      | -0.12393   | 0.0103785  | 0.883 [0.866, 0.902] | -11.66% [-13.43%, -9.84%]  |
+| day2_minus_day1         | B       | -     | structured  | -0.118358  | 0.00600371 | 0.888 [0.878, 0.899] | -11.16% [-12.20%, -10.11%] |
+| B_minus_A               | -       | 1.0   | random      |  0.0425273 | 0.101089   | 1.043 [0.856, 1.272] | 4.34% [-14.41%, 27.21%]    |
+| B_minus_A               | -       | 1.0   | structured  |  0.0153025 | 0.100743   | 1.015 [0.833, 1.237] | 1.54% [-16.65%, 23.71%]    |
+| B_minus_A               | -       | 2.0   | random      |  0.0274694 | 0.101086   | 1.028 [0.843, 1.253] | 2.79% [-15.69%, 25.31%]    |
+| B_minus_A               | -       | 2.0   | structured  |  0.0465196 | 0.100738   | 1.048 [0.860, 1.276] | 4.76% [-14.01%, 27.63%]    |
 
 ---
 

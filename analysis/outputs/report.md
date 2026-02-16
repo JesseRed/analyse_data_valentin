@@ -25,13 +25,13 @@
 
 ## 4) Models
 - Estimated GLM models:
-  - `SeqLearning_Index_all` (n=67)
-  - `RT_Slope_All` (n=67)
-  - `RT_Delta_All` (n=67)
-  - `ErrorRate_All` (n=67)
-  - `IES` (n=67)
-  - `Retention_General` (n=31)
-  - `Retention_Sequence` (n=31)
+  - `SeqLearning_Index_all` (n=71)
+  - `RT_Slope_All` (n=71)
+  - `RT_Delta_All` (n=71)
+  - `ErrorRate_All` (n=71)
+  - `IES` (n=71)
+  - `Retention_General` (n=33)
+  - `Retention_Sequence` (n=33)
 
 - Mixed model output is provided in `analysis/outputs/03_models/mixedlm_summary.txt` if convergence succeeded.
 

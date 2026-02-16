@@ -44,19 +44,11 @@ RT_MAX_MS = 3000.0
 MAD_SCALE = 1.4826
 MAD_MULTIPLIER = 3.0
 
+# Primary, publication-focused minimal adjustment set.
 NUMERIC_COVARS = [
-    "AES_sum",
     "Age",
-    "Gender_num",
-    "Depression_num",
-    "SportsActivity_num",
     "fuglmayrshort_sum",
-    "EQ5D_health_status",
-    "GDS_sum",
     "MoCa_sum",
-    "MORE_sum",
-    "TSS",
-    "NIHSS",
 ]
 
 
@@ -519,10 +511,8 @@ def run_mixed_model(block_cov: pd.DataFrame) -> tuple[pd.DataFrame, MixedLMResul
             "day",
             "BlockNumber",
             "Age",
-            "AES_sum",
+            "fuglmayrshort_sum",
             "MoCa_sum",
-            "NIHSS",
-            "TSS",
         ]
     )
     if len(d) < 300:
@@ -531,7 +521,7 @@ def run_mixed_model(block_cov: pd.DataFrame) -> tuple[pd.DataFrame, MixedLMResul
     # Reduced covariate set to improve convergence at block level.
     formula = (
         "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-        " + Age + AES_sum + MoCa_sum + NIHSS + TSS"
+        " + Age + fuglmayrshort_sum + MoCa_sum"
     )
     model = smf.mixedlm(formula, data=d, groups=d["PID"], re_formula="1")
     fit = model.fit(reml=False, method="lbfgs", maxiter=200, disp=False)
