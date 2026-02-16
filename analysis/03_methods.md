@@ -6,13 +6,14 @@ We analyzed data from a prospective, two‑group intervention study with **two c
 ### 3.2 Participants and baseline measures
 The participant roster and baseline variables were provided in the metadata table `Datensatz_Round_2.csv` (semicolon‑separated). Group assignment was taken from the column `Group` (A/B).
 
-Baseline covariates considered a priori (as specified) included:
-- **Demographics**: age (`Age`), gender (`Biomag_gender`).
-- **Mood/motivation**: apathy (AES; `AES_sum`), depression screening (`GDS_sum`), motivation for rehabilitation (`MORE_sum`), depression history (`Biomag_History of depression`).
-- **Function/clinical severity**: motor function (`fuglmayrshort_sum`), health status (`EQ5D_health_status`), stroke severity (`NIHSS`), TSS (`TSS`).
-- **Lifestyle**: sports activity (`Biomag_Sports activity`).
+For confirmatory (primary) models, we used a **minimal pre-specified adjustment set**:
+- `Age`
+- `fuglmayrshort_sum` (motor impairment / function)
+- `MoCa_sum` (cognitive status)
 
-Categorical baseline variables were recoded as numeric indicators for regression modeling where needed (gender: female=0/male=1; depression history: no=0/yes=1; sports activity: ordinal mapping no/1h_week/1–3h_week/>3h_week → 0–3).
+Additional baseline variables (e.g., AES, GDS, MORE, NIHSS, TSS, EQ5D, sports activity, depression history, gender) were retained for **secondary/exploratory** analyses only.
+
+Categorical baseline variables used in exploratory models were recoded as numeric indicators where needed (e.g., gender: female=0/male=1; depression history: no=0/yes=1; sports activity: ordinal mapping no/1h_week/1–3h_week/>3h_week → 0–3).
 
 ### 3.3 Serial Reaction Time Task (SRTT)
 The SRTT is a standard implicit motor sequence learning paradigm. Each block consists of **8 stimuli** (targets 1–4) mapped to corresponding response buttons on a controller. Participants were instructed to respond **as quickly and accurately as possible**. Per event, the software logged the block number, event number, a cumulative time stamp (“Time Since Block start”), hit indicator (`isHit`), target, pressed button, and the sequence condition (`sequence`).
@@ -93,7 +94,7 @@ with:
 - Group: A vs B
 - Day: 1 vs 2
 - Condition: structured vs random
-- Covariates: Age, AES_sum, MoCa_sum, NIHSS, TSS
+- Covariates (minimal set): Age, fuglmayrshort_sum, MoCa_sum
 - Random effects: participant‑level random intercept
 
 The log‑RT scale was used to stabilize variance and allow ratio‑scale interpretation. Planned contrasts (estimated marginal means and simple effects) were computed from the fixed‑effect covariance matrix (delta method) at mean covariate values and mean block number, including structured−random within each group/day and day‑to‑day changes within each group/condition.
@@ -103,7 +104,7 @@ To enable comparison with common endpoint analyses, we fitted heteroscedasticity
 - Day‑varying outcomes: `Outcome ~ Group × Day + covariates`
 - Retention outcomes: `Outcome ~ Group + covariates`
 
-Covariates were the pre‑specified baseline variables listed in Section 3.2.
+Covariates in these confirmatory endpoint models used the same minimal set as the primary mixed model (Age, fuglmayrshort_sum, MoCa_sum). Extended covariate sets were evaluated only in exploratory/sensitivity analyses.
 
 #### 3.7.3 Additional analyses (mechanistic and robustness)
 We conducted the following pre‑defined extensions:

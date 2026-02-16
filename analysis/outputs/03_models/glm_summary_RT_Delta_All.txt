@@ -1,41 +1,30 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:           RT_Delta_All   R-squared:                       0.528
-Model:                            OLS   Adj. R-squared:                  0.389
-Method:                 Least Squares   F-statistic:                     8.642
-Date:                Mon, 16 Feb 2026   Prob (F-statistic):           2.26e-09
-Time:                        23:44:37   Log-Likelihood:                -382.60
-No. Observations:                  67   AIC:                             797.2
-Df Residuals:                      51   BIC:                             832.5
-Df Model:                          15                                         
+Dep. Variable:           RT_Delta_All   R-squared:                       0.303
+Model:                            OLS   Adj. R-squared:                  0.238
+Method:                 Least Squares   F-statistic:                     6.835
+Date:                Tue, 17 Feb 2026   Prob (F-statistic):           1.24e-05
+Time:                        00:47:16   Log-Likelihood:                -426.30
+No. Observations:                  71   AIC:                             866.6
+Df Residuals:                      64   BIC:                             882.4
+Df Model:                           6                                         
 Covariance Type:                  HC3                                         
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Intercept                   700.5163    305.678      2.292      0.022     101.398    1299.635
-C(Group)[T.B]                 5.3105     41.694      0.127      0.899     -76.408      87.029
-C(day)[T.2]                -110.2255     35.301     -3.122      0.002    -179.415     -41.036
-C(Group)[T.B]:C(day)[T.2]   -12.0941     46.172     -0.262      0.793    -102.589      78.401
-AES_sum                       0.9101      2.270      0.401      0.688      -3.539       5.359
-Age                          -0.7718      2.301     -0.335      0.737      -5.281       3.737
-Gender_num                   -8.7369     28.265     -0.309      0.757     -64.135      46.661
-Depression_num               10.2032     49.318      0.207      0.836     -86.458     106.865
-SportsActivity_num           -7.9872     22.113     -0.361      0.718     -51.329      35.354
-fuglmayrshort_sum           -13.2624      8.073     -1.643      0.100     -29.085       2.560
-EQ5D_health_status           -1.2111      0.615     -1.971      0.049      -2.416      -0.007
-GDS_sum                       0.1330      8.991      0.015      0.988     -17.489      17.755
-MoCa_sum                     -6.7815      3.330     -2.037      0.042     -13.308      -0.255
-MORE_sum                     -0.9032      1.113     -0.811      0.417      -3.085       1.279
-TSS                          10.9569      7.627      1.437      0.151      -3.992      25.906
-NIHSS                       -19.9696      8.625     -2.315      0.021     -36.875      -3.064
+Intercept                   534.0037    159.222      3.354      0.001     221.934     846.073
+C(Group)[T.B]                -3.3824     42.704     -0.079      0.937     -87.082      80.317
+C(day)[T.2]                -117.9323     42.207     -2.794      0.005    -200.656     -35.208
+C(Group)[T.B]:C(day)[T.2]     0.0468     51.232      0.001      0.999    -100.365     100.459
+Age                          -1.2796      1.342     -0.953      0.340      -3.911       1.352
+fuglmayrshort_sum           -11.6163      5.874     -1.978      0.048     -23.129      -0.104
+MoCa_sum                     -5.8142      3.047     -1.908      0.056     -11.787       0.158
 ==============================================================================
-Omnibus:                        2.096   Durbin-Watson:                   1.439
-Prob(Omnibus):                  0.351   Jarque-Bera (JB):                1.348
-Skew:                           0.225   Prob(JB):                        0.510
-Kurtosis:                       3.530   Cond. No.                     2.78e+03
+Omnibus:                       12.150   Durbin-Watson:                   1.564
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               14.814
+Skew:                           0.755   Prob(JB):                     0.000607
+Kurtosis:                       4.652   Cond. No.                         953.
 ==============================================================================
 
 Notes:
 [1] Standard Errors are heteroscedasticity robust (HC3)
-[2] The condition number is large, 2.78e+03. This might indicate that there are
-strong multicollinearity or other numerical problems.

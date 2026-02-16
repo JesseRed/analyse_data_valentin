@@ -1,7 +1,7 @@
 ## Publication strategy and what is “publishable” in this dataset
 
 ### Executive summary (one paragraph)
-Across both groups, the dataset shows robust and theoretically coherent **implicit sequence-learning signatures** in the Serial Reaction Time Task (SRTT): RTs are faster in structured (blue/green) than random (yellow) blocks, learning curves are **non-linear**, and both repeating sequences (blue and green) show reliable facilitation relative to random. Evidence for a *simple* between-group difference in aggregated endpoints (e.g., day‑2 sequence-learning index) is **weak/uncertain** (trend-level in adjusted GLM; null in permutation tests), but there is a **publishable and mechanistically interpretable interaction** in block-level mixed models: the **day-to-day evolution of the structured–random separation differs by group** (Group×day×condition), consistent with group differences in how sequence-specific skill expression changes from day 1 to day 2. A complementary and potentially important signal is a **group difference in speed–accuracy coupling** (error-rate moderation of RT and zRT effects on hit probability), suggesting strategy differences rather than pure speed differences.
+Across both groups, the dataset shows robust and theoretically coherent **implicit sequence-learning signatures** in the Serial Reaction Time Task (SRTT): RTs are faster in structured (blue/green) than random (yellow) blocks, learning curves are **non-linear**, and both repeating sequences (blue and green) show reliable facilitation relative to random. Under the **pre-specified minimal adjustment set** (Age, Fugl-Meyer, MoCa), aggregated endpoint analysis for `SeqLearning_Index_all` shows a **nominal group effect** (B>A at day 1), but unadjusted permutation tests for day‑2 endpoints remain null. The most mechanistically interpretable and robust group finding remains the block-level mixed-model result: the **day-to-day evolution of the structured–random separation differs by group** (Group×day×condition), consistent with group differences in sequence-specific skill expression dynamics rather than a single static mean shift.
 
 ---
 
@@ -57,7 +57,7 @@ Across both groups, the dataset shows robust and theoretically coherent **implic
 
 **What NOT to overclaim**
 - Avoid claiming “VR improves sequence learning overall” as a blanket statement, because:
-  - Adjusted GLM group effects on aggregated SeqLearning_Index_all are trend-level (p≈0.086 at day 1; interaction p≈0.097).
+  - Even though minimally adjusted GLM now shows a nominal `SeqLearning_Index_all` group effect (p≈0.048 at day 1), the `Group×day` interaction is not significant (p≈0.128) and endpoint permutation tests remain null.
   - Permutation tests on unadjusted day‑2 endpoint are null (p≈0.61).
 - Instead claim: **group-dependent expression/consolidation of sequence-specific performance across days** (a dynamic effect).
 
@@ -79,15 +79,15 @@ Across both groups, the dataset shows robust and theoretically coherent **implic
 ## 3) What is currently weaker (still useful, but best as exploratory/supplement)
 
 ### A. Endpoint-style group differences on aggregated metrics
-- SeqLearning_Index_all: trend-level effects in adjusted GLM; endpoint permutation test null (day 2).
+- SeqLearning_Index_all: nominally significant group main effect in the minimally adjusted GLM, but non-significant `Group×day` interaction and null day‑2 permutation endpoint.
 - Retention metrics: group effects not significant; wide CIs.
 
 **How to include**
-- Keep as: “No strong evidence for group differences in aggregated endpoints; uncertainty remains.”
+- Keep as: “Endpoint-style effects provide supportive but limited evidence; strongest inference comes from block-level dynamic contrasts.”
 - Use Table 2 (GLM) and permutation table (S2) as transparent reporting.
 
 ### B. High-dimensional covariate modeling as “predictors of responsiveness”
-- Many covariates + moderate N yields multicollinearity and low power.
+- This risk is now mitigated in confirmatory analyses by the minimal adjustment set (Age, Fugl-Meyer, MoCa).
 - Penalized models (Lasso shrinking all coefficients) signal limited stable discovery capacity.
 - Interaction screening: no robust interactions after FDR.
 - Stratification: wide CIs and small strata.
@@ -166,7 +166,7 @@ This is not a nuisance only: it is theoretically meaningful because reward/engag
 - “Both groups show robust sequence-specific facilitation (structured < random RT).”
 - “Learning trajectories are non-linear; spline models fit better than linear slopes.”
 - “Group differences are most apparent in the **day-by-condition dynamics** (mixed-model interaction and planned contrasts), consistent with group-dependent expression of sequence-specific performance across days.”
-- “Aggregated endpoint group differences were small and uncertain in this sample.”
+- “Aggregated endpoint analyses are compatible with this pattern but are less definitive than hierarchical dynamic contrasts.”
 
 ### Claims to avoid (given current evidence)
 - Avoid “VR improves learning” as a global statement without qualifiers.
@@ -181,8 +181,8 @@ This is not a nuisance only: it is theoretically meaningful because reward/engag
 - Report it explicitly (QC summary), and emphasize that **sensitivity analyses** (truncate 119 vs 120; exclude long session) do not materially change group-effect estimates (S1).
 
 ### B. Sample size vs covariate dimensionality
-- Many covariates + N≈30–70 complete cases → multicollinearity and reduced power.
-- Mitigate by: (i) clearly stating primary vs exploratory analyses, (ii) using mixed models that exploit within-subject data, and (iii) presenting penalized/robust models as sensitivity rather than definitive inference.
+- Minimal confirmatory adjustment (Age, Fugl-Meyer, MoCa) reduces multicollinearity risk and improves interpretability.
+- Keep high-dimensional models as exploratory/sensitivity only.
 
 ### C. Multiple comparisons / researcher degrees of freedom
 - Pre-specify the primary mixed-model contrast set (structured−random within group/day + DiD summary).

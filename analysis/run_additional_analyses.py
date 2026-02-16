@@ -32,6 +32,8 @@ MODELS_DIR = ROOT / "analysis" / "outputs" / "03_models"
 QC_DIR = ROOT / "analysis" / "outputs" / "01_ingest_and_qc"
 METRICS_DIR = ROOT / "analysis" / "outputs" / "02_metrics"
 
+PRIMARY_COVARS = ["Age", "fuglmayrshort_sum", "MoCa_sum"]
+
 
 def ensure_out():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -62,17 +64,15 @@ def design_matrix(fit, new_data: pd.DataFrame):
 def emm_and_contrasts_from_mixed(d: pd.DataFrame):
     formula = (
         "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-        " + Age + AES_sum + MoCa_sum + NIHSS + TSS"
+        " + Age + fuglmayrshort_sum + MoCa_sum"
     )
     model = smf.mixedlm(formula, data=d, groups=d["PID"], re_formula="1")
     fit = model.fit(reml=False, method="lbfgs", maxiter=200, disp=False)
 
     cov_means = {
         "Age": float(d["Age"].mean()),
-        "AES_sum": float(d["AES_sum"].mean()),
+        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
         "MoCa_sum": float(d["MoCa_sum"].mean()),
-        "NIHSS": float(d["NIHSS"].mean()),
-        "TSS": float(d["TSS"].mean()),
     }
     block_number = float(d["BlockNumber"].mean())
     grid = []
@@ -134,17 +134,19 @@ def emm_and_contrasts_from_mixed(d: pd.DataFrame):
 def nonlinear_learning_curves(d: pd.DataFrame):
     d = d.copy()
     d["logRT"] = np.log(d["meanRT_hit_ms"])
-    d = d.dropna(subset=["logRT", "BlockNumber", "Group", "day", "condition", "Age", "AES_sum", "MoCa_sum", "NIHSS", "TSS"])
+    d = d.dropna(
+        subset=["logRT", "BlockNumber", "Group", "day", "condition", "Age", "fuglmayrshort_sum", "MoCa_sum"]
+    )
 
     linear_formula = (
         "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-        " + Age + AES_sum + MoCa_sum + NIHSS + TSS"
+        " + Age + fuglmayrshort_sum + MoCa_sum"
     )
     spline_formula = (
         "logRT ~ C(Group) * C(day) * C(condition)"
         " + bs(BlockNumber, df=4)"
         " + C(condition):bs(BlockNumber, df=4)"
-        " + Age + AES_sum + MoCa_sum + NIHSS + TSS"
+        " + Age + fuglmayrshort_sum + MoCa_sum"
     )
     m_lin = smf.ols(linear_formula, data=d).fit()
     m_spl = smf.ols(spline_formula, data=d).fit()
@@ -184,11 +186,20 @@ def blue_green_separate(d: pd.DataFrame):
     d = d.copy()
     d["logRT"] = np.log(d["meanRT_hit_ms"])
     d = d[d["sequence"].isin(["blue", "green", "yellow"])].dropna(
-        subset=["logRT", "Group", "day", "sequence", "BlockNumber", "Age", "AES_sum", "MoCa_sum", "NIHSS", "TSS"]
+        subset=[
+            "logRT",
+            "Group",
+            "day",
+            "sequence",
+            "BlockNumber",
+            "Age",
+            "fuglmayrshort_sum",
+            "MoCa_sum",
+        ]
     )
     formula = (
         "logRT ~ C(Group) * C(day) * C(sequence) + BlockNumber"
-        " + Age + AES_sum + MoCa_sum + NIHSS + TSS"
+        " + Age + fuglmayrshort_sum + MoCa_sum"
     )
     model = smf.mixedlm(formula, data=d, groups=d["PID"], re_formula="1")
     fit = model.fit(reml=False, method="lbfgs", maxiter=200, disp=False)
@@ -196,10 +207,8 @@ def blue_green_separate(d: pd.DataFrame):
     # EMM-style grid.
     cov_means = {
         "Age": float(d["Age"].mean()),
-        "AES_sum": float(d["AES_sum"].mean()),
+        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
         "MoCa_sum": float(d["MoCa_sum"].mean()),
-        "NIHSS": float(d["NIHSS"].mean()),
-        "TSS": float(d["TSS"].mean()),
         "BlockNumber": float(d["BlockNumber"].mean()),
     }
     grid = []
@@ -243,9 +252,21 @@ def speed_accuracy_tradeoff(block_cov: pd.DataFrame, trials: pd.DataFrame):
     # Block-level RT model with error-rate moderation.
     b = block_cov.copy()
     b["logRT"] = np.log(b["meanRT_hit_ms"])
-    b = b.dropna(subset=["logRT", "errorRate", "Group", "day", "condition", "BlockNumber", "Age", "AES_sum", "MoCa_sum", "NIHSS", "TSS"])
+    b = b.dropna(
+        subset=[
+            "logRT",
+            "errorRate",
+            "Group",
+            "day",
+            "condition",
+            "BlockNumber",
+            "Age",
+            "fuglmayrshort_sum",
+            "MoCa_sum",
+        ]
+    )
     m1 = smf.ols(
-        "logRT ~ C(Group)*C(day)*C(condition) + errorRate + C(Group):errorRate + BlockNumber + Age + AES_sum + MoCa_sum + NIHSS + TSS",
+        "logRT ~ C(Group)*C(day)*C(condition) + errorRate + C(Group):errorRate + BlockNumber + Age + fuglmayrshort_sum + MoCa_sum",
         data=b,
     ).fit(cov_type="HC3")
 

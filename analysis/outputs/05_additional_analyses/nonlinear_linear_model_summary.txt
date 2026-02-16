@@ -1,39 +1,37 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                  logRT   R-squared:                       0.263
-Model:                            OLS   Adj. R-squared:                  0.262
-Method:                 Least Squares   F-statistic:                     232.8
+Dep. Variable:                  logRT   R-squared:                       0.183
+Model:                            OLS   Adj. R-squared:                  0.182
+Method:                 Least Squares   F-statistic:                     173.1
 Date:                Tue, 17 Feb 2026   Prob (F-statistic):               0.00
-Time:                        00:03:21   Log-Likelihood:                -2073.5
-No. Observations:                8506   AIC:                             4175.
-Df Residuals:                    8492   BIC:                             4274.
-Df Model:                          13                                         
+Time:                        00:47:34   Log-Likelihood:                -2509.8
+No. Observations:                8506   AIC:                             5044.
+Df Residuals:                    8494   BIC:                             5128.
+Df Model:                          11                                         
 Covariance Type:            nonrobust                                         
 ========================================================================================================================
                                                            coef    std err          t      P>|t|      [0.025      0.975]
 ------------------------------------------------------------------------------------------------------------------------
-Intercept                                                7.6572      0.037    208.284      0.000       7.585       7.729
-C(Group)[T.B]                                            0.0220      0.019      1.130      0.258      -0.016       0.060
-C(day)[T.2]                                             -0.0694      0.019     -3.649      0.000      -0.107      -0.032
-C(condition)[T.structured]                              -0.0580      0.016     -3.609      0.000      -0.089      -0.026
-C(Group)[T.B]:C(day)[T.2]                               -0.0131      0.027     -0.479      0.632      -0.066       0.040
-C(Group)[T.B]:C(condition)[T.structured]                -0.0246      0.022     -1.110      0.267      -0.068       0.019
-C(day)[T.2]:C(condition)[T.structured]                  -0.0405      0.022     -1.855      0.064      -0.083       0.002
-C(Group)[T.B]:C(day)[T.2]:C(condition)[T.structured]     0.0437      0.031      1.394      0.163      -0.018       0.105
-BlockNumber                                             -0.0014   9.32e-05    -14.566      0.000      -0.002      -0.001
-Age                                                     -0.0018      0.000     -5.106      0.000      -0.002      -0.001
-AES_sum                                                  0.0136      0.000     32.008      0.000       0.013       0.014
-MoCa_sum                                                -0.0306      0.001    -33.281      0.000      -0.032      -0.029
-NIHSS                                                    0.0044      0.002      1.976      0.048    3.48e-05       0.009
-TSS                                                     -0.0118      0.002     -5.582      0.000      -0.016      -0.008
+Intercept                                                7.4332      0.049    152.828      0.000       7.338       7.529
+C(Group)[T.B]                                            0.1063      0.020      5.199      0.000       0.066       0.146
+C(day)[T.2]                                             -0.0636      0.020     -3.179      0.001      -0.103      -0.024
+C(condition)[T.structured]                              -0.0583      0.017     -3.450      0.001      -0.091      -0.025
+C(Group)[T.B]:C(day)[T.2]                               -0.0092      0.029     -0.321      0.748      -0.065       0.047
+C(Group)[T.B]:C(condition)[T.structured]                -0.0249      0.023     -1.072      0.284      -0.071       0.021
+C(day)[T.2]:C(condition)[T.structured]                  -0.0403      0.023     -1.754      0.079      -0.085       0.005
+C(Group)[T.B]:C(day)[T.2]:C(condition)[T.structured]     0.0442      0.033      1.341      0.180      -0.020       0.109
+BlockNumber                                             -0.0013   9.81e-05    -13.415      0.000      -0.002      -0.001
+Age                                                     -0.0007      0.000     -2.056      0.040      -0.001   -3.41e-05
+fuglmayrshort_sum                                        0.0271      0.002     12.928      0.000       0.023       0.031
+MoCa_sum                                                -0.0325      0.001    -33.709      0.000      -0.034      -0.031
 ==============================================================================
-Omnibus:                       44.444   Durbin-Watson:                   0.438
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               53.715
-Skew:                          -0.105   Prob(JB):                     2.17e-12
-Kurtosis:                       3.327   Cond. No.                     1.56e+03
+Omnibus:                       83.148   Durbin-Watson:                   0.396
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              133.550
+Skew:                          -0.056   Prob(JB):                     1.00e-29
+Kurtosis:                       3.603   Cond. No.                     1.60e+03
 ==============================================================================
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.56e+03. This might indicate that there are
+[2] The condition number is large, 1.6e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.

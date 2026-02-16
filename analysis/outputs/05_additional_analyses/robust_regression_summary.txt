@@ -7,7 +7,7 @@ Norm:                          HuberT
 Scale Est.:                       mad                                         
 Cov Type:                          H1                                         
 Date:                Tue, 17 Feb 2026                                         
-Time:                        00:03:24                                         
+Time:                        00:47:37                                         
 No. Iterations:                    50                                         
 ======================================================================================
                          coef    std err          z      P>|z|      [0.025      0.975]
