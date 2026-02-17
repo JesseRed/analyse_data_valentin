@@ -1,30 +1,32 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:           RT_Delta_All   R-squared:                       0.303
-Model:                            OLS   Adj. R-squared:                  0.238
-Method:                 Least Squares   F-statistic:                     6.835
-Date:                Tue, 17 Feb 2026   Prob (F-statistic):           1.24e-05
-Time:                        00:47:16   Log-Likelihood:                -426.30
-No. Observations:                  71   AIC:                             866.6
-Df Residuals:                      64   BIC:                             882.4
+Dep. Variable:           RT_Delta_All   R-squared:                       0.238
+Model:                            OLS   Adj. R-squared:                  0.164
+Method:                 Least Squares   F-statistic:                     5.034
+Date:                Tue, 17 Feb 2026   Prob (F-statistic):           0.000292
+Time:                        22:20:35   Log-Likelihood:                -421.24
+No. Observations:                  69   AIC:                             856.5
+Df Residuals:                      62   BIC:                             872.1
 Df Model:                           6                                         
 Covariance Type:                  HC3                                         
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Intercept                   534.0037    159.222      3.354      0.001     221.934     846.073
-C(Group)[T.B]                -3.3824     42.704     -0.079      0.937     -87.082      80.317
-C(day)[T.2]                -117.9323     42.207     -2.794      0.005    -200.656     -35.208
-C(Group)[T.B]:C(day)[T.2]     0.0468     51.232      0.001      0.999    -100.365     100.459
-Age                          -1.2796      1.342     -0.953      0.340      -3.911       1.352
-fuglmayrshort_sum           -11.6163      5.874     -1.978      0.048     -23.129      -0.104
-MoCa_sum                     -5.8142      3.047     -1.908      0.056     -11.787       0.158
+Intercept                   316.3381    206.331      1.533      0.125     -88.063     720.739
+C(Group)[T.B]                33.4643     52.612      0.636      0.525     -69.654     136.583
+C(day)[T.2]                 -87.8249     48.777     -1.801      0.072    -183.426       7.776
+C(Group)[T.B]:C(day)[T.2]   -28.7908     56.617     -0.509      0.611    -139.758      82.176
+Age                           0.3556      1.553      0.229      0.819      -2.688       3.399
+fuglmayrshort_sum            -0.6625     11.376     -0.058      0.954     -22.958      21.633
+MoCa_sum                     -7.5966      3.673     -2.068      0.039     -14.796      -0.397
 ==============================================================================
-Omnibus:                       12.150   Durbin-Watson:                   1.564
-Prob(Omnibus):                  0.002   Jarque-Bera (JB):               14.814
-Skew:                           0.755   Prob(JB):                     0.000607
-Kurtosis:                       4.652   Cond. No.                         953.
+Omnibus:                        7.337   Durbin-Watson:                   1.529
+Prob(Omnibus):                  0.026   Jarque-Bera (JB):               11.476
+Skew:                           0.271   Prob(JB):                      0.00322
+Kurtosis:                       4.923   Cond. No.                     1.03e+03
 ==============================================================================
 
 Notes:
 [1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 1.03e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

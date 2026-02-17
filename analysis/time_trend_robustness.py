@@ -9,6 +9,11 @@ import patsy
 import statsmodels.formula.api as smf
 from scipy.stats import chi2, norm
 
+try:
+    from analysis.analysis_config import EXCLUDED_PIDS, PRIMARY_COVARS
+except ModuleNotFoundError:
+    from analysis_config import EXCLUDED_PIDS, PRIMARY_COVARS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCK_PATH = ROOT / "analysis" / "outputs" / "02_metrics" / "block_level_metrics.csv"
@@ -17,27 +22,31 @@ OUT_DIR = ROOT / "analysis" / "outputs" / "05_additional_analyses"
 
 PRIMARY_FORMULA = (
     "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-    " + Age + fuglmayrshort_sum + MoCa_sum"
+    " + " + " + ".join(PRIMARY_COVARS)
 )
 FLEX_FORMULA = (
     "logRT ~ C(Group) * C(day) * C(condition) + bs(BlockNumber, df=4)"
-    " + Age + fuglmayrshort_sum + MoCa_sum"
+    " + " + " + ".join(PRIMARY_COVARS)
 )
 
 
 def load_data() -> pd.DataFrame:
     block = pd.read_csv(BLOCK_PATH)
+    block = block.loc[~block["PID"].isin(EXCLUDED_PIDS)].copy()
     meta = pd.read_csv(META_PATH, sep=";", na_values=["", "null", "N.A.", "NA"], low_memory=False)
     meta["PID"] = pd.to_numeric(meta["PID"], errors="coerce")
     meta = meta.dropna(subset=["PID"]).copy()
     meta["PID"] = meta["PID"].astype(int)
+    meta = meta.loc[~meta["PID"].isin(EXCLUDED_PIDS)].copy()
     if "Age" in meta.columns:
         meta["Age"] = pd.to_numeric(meta["Age"], errors="coerce")
     else:
         meta["Age"] = pd.to_numeric(meta.get("Biomag_Untersuchung"), errors="coerce")
-    meta["fuglmayrshort_sum"] = pd.to_numeric(meta.get("fuglmayrshort_sum"), errors="coerce")
-    meta["MoCa_sum"] = pd.to_numeric(meta.get("MoCa_sum"), errors="coerce")
-    meta = meta[["PID", "Group", "Age", "fuglmayrshort_sum", "MoCa_sum"]]
+    for col in PRIMARY_COVARS:
+        if col == "Age":
+            continue
+        meta[col] = pd.to_numeric(meta.get(col), errors="coerce")
+    meta = meta[["PID", "Group", *PRIMARY_COVARS]]
 
     d = block.merge(meta, on=["PID", "Group"], how="left")
     d = d[d["meanRT_hit_ms"].notna()].copy()
@@ -50,9 +59,7 @@ def load_data() -> pd.DataFrame:
             "condition",
             "day",
             "BlockNumber",
-            "Age",
-            "fuglmayrshort_sum",
-            "MoCa_sum",
+            *PRIMARY_COVARS,
             "logRT",
         ]
     ).copy()
@@ -74,11 +81,7 @@ def design_matrix(fit, new_data: pd.DataFrame):
 
 
 def model_emm_grid(d: pd.DataFrame) -> pd.DataFrame:
-    cov_means = {
-        "Age": float(d["Age"].mean()),
-        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
-        "MoCa_sum": float(d["MoCa_sum"].mean()),
-    }
+    cov_means = {c: float(d[c].mean()) for c in PRIMARY_COVARS}
     block_mean = float(d["BlockNumber"].mean())
     rows = []
     for g in ["A", "B"]:

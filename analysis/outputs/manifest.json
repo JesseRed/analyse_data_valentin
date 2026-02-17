@@ -1,9 +1,18 @@
 {
-  "inventory_rows": 86,
-  "trial_rows": 70696,
-  "block_rows": 8824,
-  "participant_day_rows": 73,
-  "retention_rows": 34,
+  "excluded_pids": [
+    2,
+    7,
+    13,
+    26,
+    27,
+    32,
+    38
+  ],
+  "inventory_rows": 72,
+  "trial_rows": 68704,
+  "block_rows": 8575,
+  "participant_day_rows": 71,
+  "retention_rows": 35,
   "glm_models": 7,
   "mixed_model_success": true
 }

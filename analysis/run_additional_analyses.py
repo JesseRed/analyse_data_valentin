@@ -32,7 +32,10 @@ MODELS_DIR = ROOT / "analysis" / "outputs" / "03_models"
 QC_DIR = ROOT / "analysis" / "outputs" / "01_ingest_and_qc"
 METRICS_DIR = ROOT / "analysis" / "outputs" / "02_metrics"
 
-PRIMARY_COVARS = ["Age", "fuglmayrshort_sum", "MoCa_sum"]
+try:
+    from analysis.analysis_config import PRIMARY_COVARS
+except ModuleNotFoundError:
+    from analysis_config import PRIMARY_COVARS
 
 
 def ensure_out():
@@ -64,16 +67,12 @@ def design_matrix(fit, new_data: pd.DataFrame):
 def emm_and_contrasts_from_mixed(d: pd.DataFrame):
     formula = (
         "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-        " + Age + fuglmayrshort_sum + MoCa_sum"
+        " + " + " + ".join(PRIMARY_COVARS)
     )
     model = smf.mixedlm(formula, data=d, groups=d["PID"], re_formula="1")
     fit = model.fit(reml=False, method="lbfgs", maxiter=200, disp=False)
 
-    cov_means = {
-        "Age": float(d["Age"].mean()),
-        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
-        "MoCa_sum": float(d["MoCa_sum"].mean()),
-    }
+    cov_means = {c: float(d[c].mean()) for c in PRIMARY_COVARS}
     block_number = float(d["BlockNumber"].mean())
     grid = []
     for group in ["A", "B"]:
@@ -135,18 +134,18 @@ def nonlinear_learning_curves(d: pd.DataFrame):
     d = d.copy()
     d["logRT"] = np.log(d["meanRT_hit_ms"])
     d = d.dropna(
-        subset=["logRT", "BlockNumber", "Group", "day", "condition", "Age", "fuglmayrshort_sum", "MoCa_sum"]
+        subset=["logRT", "BlockNumber", "Group", "day", "condition", *PRIMARY_COVARS]
     )
 
     linear_formula = (
         "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-        " + Age + fuglmayrshort_sum + MoCa_sum"
+        " + " + " + ".join(PRIMARY_COVARS)
     )
     spline_formula = (
         "logRT ~ C(Group) * C(day) * C(condition)"
         " + bs(BlockNumber, df=4)"
         " + C(condition):bs(BlockNumber, df=4)"
-        " + Age + fuglmayrshort_sum + MoCa_sum"
+        " + " + " + ".join(PRIMARY_COVARS)
     )
     m_lin = smf.ols(linear_formula, data=d).fit()
     m_spl = smf.ols(spline_formula, data=d).fit()
@@ -192,25 +191,19 @@ def blue_green_separate(d: pd.DataFrame):
             "day",
             "sequence",
             "BlockNumber",
-            "Age",
-            "fuglmayrshort_sum",
-            "MoCa_sum",
+            *PRIMARY_COVARS,
         ]
     )
     formula = (
         "logRT ~ C(Group) * C(day) * C(sequence) + BlockNumber"
-        " + Age + fuglmayrshort_sum + MoCa_sum"
+        " + " + " + ".join(PRIMARY_COVARS)
     )
     model = smf.mixedlm(formula, data=d, groups=d["PID"], re_formula="1")
     fit = model.fit(reml=False, method="lbfgs", maxiter=200, disp=False)
 
     # EMM-style grid.
-    cov_means = {
-        "Age": float(d["Age"].mean()),
-        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
-        "MoCa_sum": float(d["MoCa_sum"].mean()),
-        "BlockNumber": float(d["BlockNumber"].mean()),
-    }
+    cov_means = {c: float(d[c].mean()) for c in PRIMARY_COVARS}
+    cov_means["BlockNumber"] = float(d["BlockNumber"].mean())
     grid = []
     for g in ["A", "B"]:
         for day in [1, 2]:
@@ -260,13 +253,12 @@ def speed_accuracy_tradeoff(block_cov: pd.DataFrame, trials: pd.DataFrame):
             "day",
             "condition",
             "BlockNumber",
-            "Age",
-            "fuglmayrshort_sum",
-            "MoCa_sum",
+            *PRIMARY_COVARS,
         ]
     )
     m1 = smf.ols(
-        "logRT ~ C(Group)*C(day)*C(condition) + errorRate + C(Group):errorRate + BlockNumber + Age + fuglmayrshort_sum + MoCa_sum",
+        "logRT ~ C(Group)*C(day)*C(condition) + errorRate + C(Group):errorRate + BlockNumber + "
+        + " + ".join(PRIMARY_COVARS),
         data=b,
     ).fit(cov_type="HC3")
 
@@ -294,7 +286,6 @@ def robust_penalized_models(pday: pd.DataFrame):
         "Gender_num",
         "Depression_num",
         "SportsActivity_num",
-        "fuglmayrshort_sum",
         "EQ5D_health_status",
         "GDS_sum",
         "MoCa_sum",
@@ -374,10 +365,11 @@ def predictor_interaction_screening(pday: pd.DataFrame):
     candidates = ["AES_sum", "MoCa_sum", "GDS_sum", "NIHSS", "TSS", "MORE_sum"]
     rows = []
     for var in candidates:
-        formula = f"SeqLearning_Index_all ~ C(Group) + {var} + C(Group):{var} + Age + Gender_num + fuglmayrshort_sum"
-        m = smf.ols(formula, data=d.dropna(subset=["SeqLearning_Index_all", "Group", var, "Age", "Gender_num", "fuglmayrshort_sum"])).fit(
-            cov_type="HC3"
-        )
+        formula = f"SeqLearning_Index_all ~ C(Group) + {var} + C(Group):{var} + Age + Gender_num + NIHSS"
+        m = smf.ols(
+            formula,
+            data=d.dropna(subset=["SeqLearning_Index_all", "Group", var, "Age", "Gender_num", "NIHSS"]),
+        ).fit(cov_type="HC3")
         term = f"C(Group)[T.B]:{var}"
         if term in m.params.index:
             rows.append(
@@ -401,8 +393,8 @@ def clinically_meaningful_stratification(pday: pd.DataFrame):
         "MoCa_high": d["MoCa_sum"] >= 24,
         "GDS_high": d["GDS_sum"] >= 6,
         "GDS_low": d["GDS_sum"] < 6,
-        "Fugl_low": d["fuglmayrshort_sum"] <= 10,
-        "Fugl_high": d["fuglmayrshort_sum"] > 10,
+        "NIHSS_low": d["NIHSS"] <= 2,
+        "NIHSS_high": d["NIHSS"] > 2,
     }
     rows = []
     for name, mask in strata_defs.items():

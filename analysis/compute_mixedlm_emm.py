@@ -9,6 +9,11 @@ import pandas as pd
 import patsy
 import statsmodels.formula.api as smf
 
+try:
+    from analysis.analysis_config import EXCLUDED_PIDS, PRIMARY_COVARS
+except ModuleNotFoundError:
+    from analysis_config import EXCLUDED_PIDS, PRIMARY_COVARS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCK_PATH = ROOT / "analysis" / "outputs" / "02_metrics" / "block_level_metrics.csv"
@@ -18,7 +23,8 @@ OUT_DIR = ROOT / "analysis" / "outputs" / "03_models"
 
 FORMULA = (
     "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-    " + Age + fuglmayrshort_sum + MoCa_sum"
+    + " + "
+    + " + ".join(PRIMARY_COVARS)
 )
 
 
@@ -27,6 +33,7 @@ def normalize_meta() -> pd.DataFrame:
     meta["PID"] = pd.to_numeric(meta["PID"], errors="coerce")
     meta = meta.dropna(subset=["PID"]).copy()
     meta["PID"] = meta["PID"].astype(int)
+    meta = meta.loc[~meta["PID"].isin(EXCLUDED_PIDS)].copy()
 
     # Align with pipeline conventions.
     if "Age" in meta.columns:
@@ -34,15 +41,18 @@ def normalize_meta() -> pd.DataFrame:
     else:
         meta["Age"] = pd.to_numeric(meta.get("Biomag_Untersuchung"), errors="coerce")
 
-    for col in ["fuglmayrshort_sum", "MoCa_sum"]:
+    for col in PRIMARY_COVARS:
+        if col == "Age":
+            continue
         meta[col] = pd.to_numeric(meta.get(col), errors="coerce")
 
-    keep = ["PID", "Group", "Age", "fuglmayrshort_sum", "MoCa_sum"]
+    keep = ["PID", "Group", *PRIMARY_COVARS]
     return meta[keep].copy()
 
 
 def load_block_cov() -> pd.DataFrame:
     block = pd.read_csv(BLOCK_PATH)
+    block = block.loc[~block["PID"].isin(EXCLUDED_PIDS)].copy()
     meta = normalize_meta()
     d = block.merge(meta, on=["PID", "Group"], how="left")
     d = d[d["meanRT_hit_ms"].notna()].copy()
@@ -59,9 +69,7 @@ def load_block_cov() -> pd.DataFrame:
             "condition",
             "day",
             "BlockNumber",
-            "Age",
-            "fuglmayrshort_sum",
-            "MoCa_sum",
+            *PRIMARY_COVARS,
         ]
     )
     return d
@@ -75,11 +83,7 @@ def fit_mixedlm(d: pd.DataFrame):
 
 def build_emm_grid(d: pd.DataFrame) -> pd.DataFrame:
     # Use means of covariates and a representative mid-task block.
-    cov_means = {
-        "Age": float(d["Age"].mean()),
-        "fuglmayrshort_sum": float(d["fuglmayrshort_sum"].mean()),
-        "MoCa_sum": float(d["MoCa_sum"].mean()),
-    }
+    cov_means = {c: float(d[c].mean()) for c in PRIMARY_COVARS}
     block_number = float(d["BlockNumber"].mean())
 
     grid = []

@@ -9,7 +9,6 @@ PID,day,source_file,n_rows,n_blocks,n_events,min_block,max_block,duplicate_block
 5,2,/home/ck/Code/analyse_data_valentin/data/05/GR_05_Hr_05_20250512_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 6,1,/home/ck/Code/analyse_data_valentin/data/06/GR_06_Hr_06_20250303_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 6,2,/home/ck/Code/analyse_data_valentin/data/06/GR_06_Hr. _06_2025034_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
-7,2,/home/ck/Code/analyse_data_valentin/data/07/GR_07_Fr_07_20250622_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 8,1,/home/ck/Code/analyse_data_valentin/data/08/GR_08_Hr_8_20250924_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 8,2,/home/ck/Code/analyse_data_valentin/data/08/GR_08_Hr_08_20250925_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 9,1,/home/ck/Code/analyse_data_valentin/data/09/GR_09_Hr_09_20250309_FRA_1_fertig.csv,2152,226,2152,1,226,0,38,0,0,0,0,False,False,False,False,952,119
@@ -43,7 +42,6 @@ PID,day,source_file,n_rows,n_blocks,n_events,min_block,max_block,duplicate_block
 24,2,/home/ck/Code/analyse_data_valentin/data/24/GR_24_Fr_24_20250613_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 25,1,/home/ck/Code/analyse_data_valentin/data/25/GR_25_Hr_25_20250718_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 25,2,/home/ck/Code/analyse_data_valentin/data/25/GR_25_Hr_25_20250719_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
-26,1,/home/ck/Code/analyse_data_valentin/data/26/GR_26_Hr_26_20250612_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 28,1,/home/ck/Code/analyse_data_valentin/data/28/GR_28_Fr_28_20250330_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 28,2,/home/ck/Code/analyse_data_valentin/data/28/GR_28_Fr_28_20250331_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 29,1,/home/ck/Code/analyse_data_valentin/data/29/GR_29_Hr_29_20250707_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
@@ -52,6 +50,7 @@ PID,day,source_file,n_rows,n_blocks,n_events,min_block,max_block,duplicate_block
 30,2,/home/ck/Code/analyse_data_valentin/data/30/GR_30_Hr._30_20250522_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 31,1,/home/ck/Code/analyse_data_valentin/data/31/GR_31_Hr_31_20250613_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 31,2,/home/ck/Code/analyse_data_valentin/data/31/GR_31_Hr_31_20250614_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
+33,1,/home/ck/Code/analyse_data_valentin/data/33/GR_33_Hr_33_20250915_FRA_1_fertig.csv,864,108,864,1,108,0,0,0,0,0,0,False,False,False,False,952,119
 33,2,/home/ck/Code/analyse_data_valentin/data/33/GR_33_Hr_33_20250916_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 34,1,/home/ck/Code/analyse_data_valentin/data/34/GR_34_Hr_34_20250701_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 34,2,/home/ck/Code/analyse_data_valentin/data/34/GR_34_Hr_34_20250702_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
@@ -61,7 +60,6 @@ PID,day,source_file,n_rows,n_blocks,n_events,min_block,max_block,duplicate_block
 36,2,/home/ck/Code/analyse_data_valentin/data/36/GR_36_Fr. _36_20250613_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 37,1,/home/ck/Code/analyse_data_valentin/data/37/GR_37_Hr_37_20250319_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 37,2,/home/ck/Code/analyse_data_valentin/data/37/GR_37_Hr._37_20250320_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
-38,2,/home/ck/Code/analyse_data_valentin/data/38/GR_38_Hr_38_20250912_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 39,1,/home/ck/Code/analyse_data_valentin/data/39/GR_39_Hr_39_20250907_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 39,2,/home/ck/Code/analyse_data_valentin/data/39/GR_39_Hr_39_20250908_FRA_2_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119
 40,1,/home/ck/Code/analyse_data_valentin/data/40/GR_40_Hr_40_20250217_FRA_1_fertig.csv,952,119,952,1,119,0,0,0,0,0,0,False,False,True,True,952,119

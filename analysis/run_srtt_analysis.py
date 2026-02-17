@@ -16,6 +16,13 @@ import statsmodels.formula.api as smf
 from scipy.stats import mstats
 from statsmodels.regression.mixed_linear_model import MixedLMResults
 
+try:
+    # When imported as `analysis.run_srtt_analysis` (namespace package).
+    from analysis.analysis_config import EXCLUDED_PIDS, PRIMARY_COVARS
+except ModuleNotFoundError:
+    # When executed as a script: `python analysis/run_srtt_analysis.py`.
+    from analysis_config import EXCLUDED_PIDS, PRIMARY_COVARS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
@@ -44,12 +51,8 @@ RT_MAX_MS = 3000.0
 MAD_SCALE = 1.4826
 MAD_MULTIPLIER = 3.0
 
-# Primary, publication-focused minimal adjustment set.
-NUMERIC_COVARS = [
-    "Age",
-    "fuglmayrshort_sum",
-    "MoCa_sum",
-]
+# Primary, publication-focused minimal adjustment set (configured in analysis_config).
+NUMERIC_COVARS = list(PRIMARY_COVARS)
 
 
 @dataclass
@@ -119,6 +122,7 @@ def load_metadata() -> pd.DataFrame:
     meta["PID"] = pd.to_numeric(meta["PID"], errors="coerce").astype("Int64")
     meta = meta.dropna(subset=["PID"]).copy()
     meta["PID"] = meta["PID"].astype(int)
+    meta = meta.loc[~meta["PID"].isin(EXCLUDED_PIDS)].copy()
 
     if "Age" in meta.columns:
         meta["Age"] = pd.to_numeric(meta["Age"], errors="coerce")
@@ -510,19 +514,14 @@ def run_mixed_model(block_cov: pd.DataFrame) -> tuple[pd.DataFrame, MixedLMResul
             "condition",
             "day",
             "BlockNumber",
-            "Age",
-            "fuglmayrshort_sum",
-            "MoCa_sum",
+            *NUMERIC_COVARS,
         ]
     )
     if len(d) < 300:
         return pd.DataFrame(), None
 
-    # Reduced covariate set to improve convergence at block level.
-    formula = (
-        "logRT ~ C(Group) * C(day) * C(condition) + BlockNumber"
-        " + Age + fuglmayrshort_sum + MoCa_sum"
-    )
+    covars = " + ".join(NUMERIC_COVARS)
+    formula = f"logRT ~ C(Group) * C(day) * C(condition) + BlockNumber + {covars}"
     model = smf.mixedlm(formula, data=d, groups=d["PID"], re_formula="1")
     fit = model.fit(reml=False, method="lbfgs", maxiter=200, disp=False)
     coef_table = fit.summary().tables[1]
@@ -688,6 +687,12 @@ def write_report(
 
     with open(report_path, "w", encoding="utf-8") as f:
         f.write("# SRTT Analysis Report\n\n")
+        f.write("## 0) Manual exclusions\n")
+        f.write(
+            "- Excluded PIDs (edit in `analysis/analysis_config.py`): "
+            + ", ".join(str(x) for x in EXCLUDED_PIDS)
+            + "\n\n"
+        )
         f.write("## 1) Data inventory and mapping\n")
         f.write(f"- Total participants in metadata: **{inv['n_pid_total']}**\n")
         f.write(f"- Participants with both day files: **{inv['n_with_both_days']}**\n")
@@ -749,6 +754,7 @@ def save_data_products(
     inv_dir = DIRS["inventory"]
     metrics_dir = DIRS["metrics"]
 
+    pd.DataFrame({"PID": EXCLUDED_PIDS}).to_csv(inv_dir / "excluded_pids.csv", index=False)
     inventory.to_csv(inv_dir / "inventory_pid_day_files.csv", index=False)
     file_qc.to_csv(inv_dir / "file_qc_flags.csv", index=False)
     trials.to_parquet(inv_dir / "trial_level_all.parquet", index=False)
@@ -791,6 +797,7 @@ def main() -> None:
     write_report(inventory, file_qc, trials, participant_day_cov, retention_cov, glm_index)
 
     manifest = {
+        "excluded_pids": EXCLUDED_PIDS,
         "inventory_rows": int(len(inventory)),
         "trial_rows": int(len(trials)),
         "block_rows": int(len(block_level)),
