@@ -1,0 +1,4 @@
+## Supplementary text block (Time-trend robustness)
+
+As a robustness check, we repeated all primary planned contrasts under an alternative flexible specification of the block-wise time trend (`bs(BlockNumber, df=4)`) while keeping the fixed-effect structure and random-intercept specification unchanged. Although the flexible model improved global fit indices (Supplementary Table S4c), the key Group x Day x Condition inferences were materially unchanged: structured-advantage contrasts differed by less than 2 percentage points across Group x Day cells (Supplementary Table S4), and the Difference-in-Differences estimate remained directionally concordant with similar magnitude, confidence intervals, and statistical significance in both linear and flexible specifications (Supplementary Table S4b). These results support the robustness of the primary dynamic conclusions to time-trend specification.
+

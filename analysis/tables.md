@@ -55,3 +55,40 @@
 | MoCa_high |  22 | -16.018 [-61.947, 29.911] | 0.494 |
 | GDS_low   |  32 | -12.875 [-67.001, 41.252] | 0.641 |
 | Fugl_high |  27 | -4.522 [-59.936, 50.893]  | 0.873 |
+
+
+## Supplementary Table S4. Time-trend robustness (linear vs flexible)
+
+Planned contrasts (linear vs flexible block-wise trend), including material change criterion (|delta| < 2 percentage points).
+
+| contrast                | Group   |   Day | Condition   |   log_diff_linear |   SE_linear |    p_linear |   pct_change_linear |   log_diff_flex |    SE_flex |      p_flex |   pct_change_flex |   delta_pct_points | materially_unchanged_2pp   |
+|:------------------------|:--------|------:|:------------|------------------:|------------:|------------:|--------------------:|----------------:|-----------:|------------:|------------------:|-------------------:|:---------------------------|
+| structured_minus_random | A       |     1 | nan         |        -0.0574298 |  0.00847104 | 1.20555e-11 |          -0.0558118 |      -0.0561174 | 0.00846694 | 3.40648e-11 |        -0.0545719 |         0.123989   | True                       |
+| structured_minus_random | A       |     2 | nan         |        -0.0981324 |  0.00779394 | 0           |          -0.0934712 |      -0.0981026 | 0.00777665 | 0           |        -0.0934442 |         0.00270027 | True                       |
+| structured_minus_random | B       |     1 | nan         |        -0.0846545 |  0.00801819 | 0           |          -0.0811703 |      -0.0839385 | 0.00802776 | 0           |        -0.0805122 |         0.0658144  | True                       |
+| structured_minus_random | B       |     2 | nan         |        -0.0790822 |  0.00872815 | 0           |          -0.0760361 |      -0.0791275 | 0.00870866 | 0           |        -0.0760779 |        -0.00418391 | True                       |
+| day2_minus_day1         | A       |   nan | random      |        -0.108872  |  0.0101139  | 0           |          -0.103155  |      -0.108032  | 0.0101003  | 0           |        -0.102401  |         0.0754215  | True                       |
+| day2_minus_day1         | A       |   nan | structured  |        -0.149575  |  0.00584475 | 0           |          -0.138926  |      -0.150017  | 0.00583377 | 0           |        -0.139306  |        -0.0380446  | True                       |
+| day2_minus_day1         | B       |   nan | random      |        -0.12393   |  0.0103785  | 0           |          -0.116558  |      -0.123424  | 0.0103877  | 0           |        -0.116112  |         0.0446764  | True                       |
+| day2_minus_day1         | B       |   nan | structured  |        -0.118358  |  0.00600371 | 0           |          -0.111622  |      -0.118613  | 0.00600571 | 0           |        -0.111849  |        -0.0227156  | True                       |
+| B_minus_A               | nan     |     1 | random      |         0.0425273 |  0.101089   | 0.673979    |           0.0434445 |       0.0429328 | 0.101075   | 0.671012    |         0.0438677 |         0.0423188  | True                       |
+| B_minus_A               | nan     |     1 | structured  |         0.0153025 |  0.100743   | 0.879269    |           0.0154202 |       0.0151117 | 0.100731   | 0.880748    |         0.0152265 |        -0.0193733  | True                       |
+| B_minus_A               | nan     |     2 | random      |         0.0274694 |  0.101086   | 0.785819    |           0.0278502 |       0.0275399 | 0.101072   | 0.785254    |         0.0279226 |         0.007242   | True                       |
+| B_minus_A               | nan     |     2 | structured  |         0.0465196 |  0.100738   | 0.644234    |           0.0476186 |       0.046515  | 0.100726   | 0.644225    |         0.0476138 |        -0.00048342 | True                       |
+
+
+### Supplementary Table S4b. Difference-in-Differences (DoD) comparison
+
+| model           |    log_DoD |        SE |          p |   pct_change |
+|:----------------|-----------:|----------:|-----------:|-------------:|
+| linear          | -0.0462749 | 0.0165189 | 0.00508908 |   -0.0452206 |
+| flexible_bs_df4 | -0.0467962 | 0.0164834 | 0.00452575 |   -0.0457181 |
+
+
+### Supplementary Table S4c. Model fit comparison (secondary)
+
+| model           | formula                                                                                               |      AIC |      BIC |   logLik |   df_modelwc |   n_obs |      LLR |         LLR_p |
+|:----------------|:------------------------------------------------------------------------------------------------------|---------:|---------:|---------:|-------------:|--------:|---------:|--------------:|
+| linear          | logRT ~ C(Group) * C(day) * C(condition) + BlockNumber + Age + fuglmayrshort_sum + MoCa_sum           | -6447.1  | -6348.43 |  3237.55 |           13 |    8506 | nan      | nan           |
+| flexible_bs_df4 | logRT ~ C(Group) * C(day) * C(condition) + bs(BlockNumber, df=4) + Age + fuglmayrshort_sum + MoCa_sum | -6481.07 | -6361.25 |  3257.54 |           16 |    8506 | nan      | nan           |
+| comparison      | flexible_vs_linear                                                                                    |   nan    |   nan    |   nan    |            3 |    8506 |  39.9684 |   1.08208e-08 |

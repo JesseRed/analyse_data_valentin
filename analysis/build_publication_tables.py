@@ -111,12 +111,55 @@ def build_table_stratification():
     return st[["stratum", "n", "B vs A (95% CI)", "p"]]
 
 
+def build_table_time_trend_sx():
+    lin = pd.read_csv(ADD_DIR / "supp_time_trend_contrasts_linear.csv")
+    flex = pd.read_csv(ADD_DIR / "supp_time_trend_contrasts_flexible.csv")
+    dod_lin = pd.read_csv(ADD_DIR / "supp_time_trend_DoD_linear.csv")
+    dod_flex = pd.read_csv(ADD_DIR / "supp_time_trend_DoD_flexible.csv")
+    fit = pd.read_csv(ADD_DIR / "supp_time_trend_fit_comparison.csv")
+
+    # Focus on primary planned contrasts.
+    keep_cols = ["contrast", "Group", "Day", "Condition", "log_diff", "SE", "p", "pct_change"]
+    lin = lin[keep_cols].copy()
+    flex = flex[keep_cols].copy()
+    merged = lin.merge(
+        flex,
+        on=["contrast", "Group", "Day", "Condition"],
+        suffixes=("_linear", "_flex"),
+    )
+    merged["delta_pct_points"] = 100 * (merged["pct_change_flex"] - merged["pct_change_linear"])
+    merged["materially_unchanged_2pp"] = merged["delta_pct_points"].abs() < 2.0
+
+    dod = pd.DataFrame(
+        [
+            {
+                "model": "linear",
+                "log_DoD": float(dod_lin.loc[0, "log_DoD"]),
+                "SE": float(dod_lin.loc[0, "SE"]),
+                "p": float(dod_lin.loc[0, "p"]),
+                "pct_change": float(dod_lin.loc[0, "pct_change"]),
+            },
+            {
+                "model": "flexible_bs_df4",
+                "log_DoD": float(dod_flex.loc[0, "log_DoD"]),
+                "SE": float(dod_flex.loc[0, "SE"]),
+                "p": float(dod_flex.loc[0, "p"]),
+                "pct_change": float(dod_flex.loc[0, "pct_change"]),
+            },
+        ]
+    )
+    return merged, dod, fit
+
+
 def write_markdown_tables(
     table2: pd.DataFrame,
     table3: pd.DataFrame,
     sens: pd.DataFrame,
     perm: pd.DataFrame,
     strat: pd.DataFrame,
+    sx_contrasts: pd.DataFrame,
+    sx_dod: pd.DataFrame,
+    sx_fit: pd.DataFrame,
 ):
     md_path = ROOT / "analysis" / "tables.md"
     lines = []
@@ -130,6 +173,13 @@ def write_markdown_tables(
     lines.append(perm.to_markdown(index=False))
     lines.append("\n\n## Supplementary Table S3. Clinical stratification\n")
     lines.append(strat.to_markdown(index=False))
+    lines.append("\n\n## Supplementary Table S4. Time-trend robustness (linear vs flexible)\n")
+    lines.append("Planned contrasts (linear vs flexible block-wise trend), including material change criterion (|delta| < 2 percentage points).\n")
+    lines.append(sx_contrasts.to_markdown(index=False))
+    lines.append("\n\n### Supplementary Table S4b. Difference-in-Differences (DoD) comparison\n")
+    lines.append(sx_dod.to_markdown(index=False))
+    lines.append("\n\n### Supplementary Table S4c. Model fit comparison (secondary)\n")
+    lines.append(sx_fit.to_markdown(index=False))
     md_path.write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -140,13 +190,17 @@ def main():
     sens = build_table_sensitivity()
     perm = build_table_permutation()
     strat = build_table_stratification()
+    sx_contrasts, sx_dod, sx_fit = build_table_time_trend_sx()
 
     table2.to_csv(OUT_DIR / "table2_primary_glm.csv", index=False)
     table3.to_csv(OUT_DIR / "table3_mixed_simple_effects.csv", index=False)
     sens.to_csv(OUT_DIR / "supp_table_s1_sensitivity.csv", index=False)
     perm.to_csv(OUT_DIR / "supp_table_s2_permutation.csv", index=False)
     strat.to_csv(OUT_DIR / "supp_table_s3_stratification.csv", index=False)
-    write_markdown_tables(table2, table3, sens, perm, strat)
+    sx_contrasts.to_csv(OUT_DIR / "supp_table_s4_time_trend_contrasts.csv", index=False)
+    sx_dod.to_csv(OUT_DIR / "supp_table_s4_time_trend_DoD.csv", index=False)
+    sx_fit.to_csv(OUT_DIR / "supp_table_s4_time_trend_fit.csv", index=False)
+    write_markdown_tables(table2, table3, sens, perm, strat, sx_contrasts, sx_dod, sx_fit)
 
     print("Wrote publication tables to:")
     print(OUT_DIR)
