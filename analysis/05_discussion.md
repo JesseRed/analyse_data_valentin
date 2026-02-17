@@ -20,7 +20,7 @@ The additional speed-accuracy analyses support this interpretation. Significant 
 The findings are consistent with prior motor-learning and rehabilitation literature in three ways:
 
 1. **Implicit sequence learning remains measurable in neurologic populations**, even under constrained clinical protocols.
-2. **Learning trajectories are frequently non-linear**, especially in short repeated sessions; linear block slopes alone can underrepresent meaningful temporal structure.
+2. **Intervention effects may emerge in repeated-measures dynamics** rather than static endpoint contrasts.
 3. **Engagement/reward-oriented interventions may alter how learning is expressed**, including the balance between speed and accuracy, without necessarily producing large static endpoint differences in moderate samples.
 
 Thus, our results support recent methodological recommendations to prioritize hierarchical repeated-measures models and planned contrasts over endpoint-only summaries when testing intervention effects in motor-learning paradigms.
@@ -39,7 +39,7 @@ Key strengths include:
 - an end-to-end reproducible analysis workflow from raw event logs to publication tables,
 - transparent RT reconstruction and robust outlier handling,
 - a confirmatory minimal adjustment strategy to reduce overadjustment/multicollinearity risk,
-- and multiple robustness analyses (non-linear models, sequence decomposition, missingness/session sensitivity, permutation tests).
+- and multiple robustness analyses (time-trend specification, sequence decomposition, missingness/session sensitivity, permutation tests).
 
 ### 5.6 Limitations
 Several limitations should be acknowledged.

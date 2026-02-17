@@ -108,13 +108,16 @@ Covariates in these confirmatory endpoint models used the same minimal set as th
 
 #### 3.7.3 Additional analyses (mechanistic and robustness)
 We conducted the following pre‑defined extensions:
-- **Non‑linear learning curves**: spline basis on BlockNumber (`bs(df=4)`) compared with a linear block model.
+- **Time-trend robustness**: we repeated the primary planned contrasts under an alternative, flexible specification of the block-wise time trend (`bs(BlockNumber, df=4)`), while keeping the same fixed-effect structure and random-intercept specification.
 - **Blue vs green separated**: mixed model on `Group × Day × sequence (yellow/blue/green)`.
 - **Speed–accuracy coupling**: models assessing whether accuracy moderates RT and whether the speed–hit association differs by group/day/condition (cluster‑robust SEs by participant).
 - **Robust and penalized regression**: Huber robust regression and ridge/lasso as stability/sensitivity checks for covariate‑rich endpoint models.
 - **Predictor interaction screening**: Group×predictor interactions for selected baseline variables with FDR correction.
 - **Clinical stratification**: stratified group comparisons using common thresholds (e.g., MoCa, GDS) where feasible.
 - **Permutation tests**: two‑sided label permutation tests (10,000 permutations) for unadjusted group contrasts on day‑2 sequence learning and retention.
+
+As a robustness check, we repeated the primary planned contrasts under an alternative, flexible specification of the block-wise time trend; estimates for the Group × Day × Condition contrasts were materially unchanged.
+For this robustness check, “materially unchanged” was predefined as an absolute change <2 percentage points in structured-advantage contrasts within each Group×Day cell, together with directionally concordant DoD estimates of the Group×Day×Condition contrast.
 
 ### 3.8 Sensitivity analyses addressing data completeness
 Because the modal block count differed from the protocol expectation, we performed standardized sensitivity analyses:

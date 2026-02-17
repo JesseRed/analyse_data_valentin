@@ -40,8 +40,9 @@ Across endpoint outcomes, most group effects remained small and imprecise (Table
 
 ### 4.5 Mechanistic and robustness analyses supporting the primary interpretation
 
-#### 4.5.1 Non‑linear learning trajectories
-Learning curves were not well captured by a single linear block slope. A spline model with `bs(BlockNumber, df=4)` improved fit over the linear block model (likelihood‑ratio test **p = 0.007**; AIC improved from 4175.07 to 4169.66), indicating **non‑linear** learning trajectories. This supports the use of hierarchical and flexible time‑course models when interpreting group differences.
+#### 4.5.1 Time-trend robustness of primary contrasts
+As a robustness check, we repeated the primary planned contrasts under an alternative, flexible specification of the block-wise time trend (`bs(BlockNumber, df=4)`) while preserving the same fixed-effect and random-intercept structure. Flexible time trends improved overall fit metrics; however, primary Group × Day × Condition contrast estimates were **materially unchanged** (Supplementary Table S4).
+The explicit DoD contrast remained nearly identical across specifications: linear model DoD log-effect = -0.0463 (about -4.52%, p=0.0051) versus flexible model DoD log-effect = -0.0468 (about -4.57%, p=0.0045).
 
 #### 4.5.2 Blue vs green sequences analyzed separately
 When separating structured sequences by color, both **blue** and **green** blocks were faster than **yellow** (random) blocks across groups and days, confirming that sequence‑specific facilitation was present for both repeating sequences. In a mixed model on log‑RT with `Group × day × sequence`, contrasts for blue−yellow and green−yellow were consistently negative (see `analysis/outputs/05_additional_analyses/blue_green_contrasts.csv`), supporting the interpretation that the primary mixed‑model result reflects sequence‑specific dynamics rather than a single idiosyncratic sequence type.
@@ -57,6 +58,8 @@ Together, these findings motivate interpreting group differences as **difference
 
 #### 4.6.1 Data‑quality sensitivity (119 vs 120 blocks; long session exclusion)
 Group coefficient estimates for the sequence‑learning endpoint were stable across (i) truncation to the first 119 blocks, (ii) truncation to 120 blocks, and (iii) exclusion of the single long session; estimates remained in the same direction and similar magnitude, with p-values consistently around 0.04–0.05 (Supplementary Table S1).
+
+For time-trend robustness, absolute differences between linear and flexible structured-advantage contrasts were <2 percentage points in all Group×Day cells, and DoD estimates were directionally concordant with very similar confidence intervals (Supplementary Table S4).
 
 #### 4.6.2 Permutation tests (endpoint contrasts)
 As confirmatory robustness checks on endpoint‑style between‑group differences, two‑sided permutation tests (10,000 permutations) did not support a reliable unadjusted group difference for day‑2 sequence learning or for retention sequence learning (Supplementary Table S2). This reinforces the conclusion that the most reproducible group signal lies in **day‑by‑condition dynamics** captured by hierarchical models, rather than in single endpoint contrasts.

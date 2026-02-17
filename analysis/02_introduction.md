@@ -9,7 +9,7 @@ This distinction is particularly relevant in clinical populations, where improve
 
 From a theoretical perspective, post-stroke motor recovery is shaped by time-sensitive neuroplasticity and by motivational-neuromodulatory factors. Reward and engagement are proposed to enhance motor memory formation and retention by influencing dopaminergic learning mechanisms, effort allocation, and adherence. Virtual reality (VR)-based interventions are therefore attractive because they can combine high practice intensity with immediate feedback, salience, and game-like reinforcement. However, intervention effects may not necessarily appear as a simple static endpoint difference. Instead, they may emerge as differences in **how learning is expressed over time**—for example, in the day-to-day evolution of sequence-specific performance.
 
-This has an important methodological consequence: endpoint-only analyses may under-detect meaningful effects when trajectories are heterogeneous, non-linear, or strategy-dependent. In SRTT datasets, learning curves are often not strictly linear, and speed-accuracy trade-offs can obscure interpretation if RT is considered in isolation. Hierarchical repeated-measures models at the block level can preserve within-participant information and provide a more sensitive test of dynamic intervention effects than participant-level endpoint aggregation alone.
+This has an important methodological consequence: endpoint-only analyses may under-detect meaningful effects when trajectories are heterogeneous or strategy-dependent. Speed-accuracy trade-offs can obscure interpretation if RT is considered in isolation. Hierarchical repeated-measures models at the block level preserve within-participant information and provide sensitive tests of dynamic intervention effects relative to participant-level endpoint aggregation alone.
 
 In the present study, we investigate two intervention groups (Group A: VR+SRTT; Group B: SRTT-only) across two consecutive days in a post-stroke cohort. We embed our analysis in a framework that integrates:
 - **implicit sequence learning theory** (structured vs random advantage),
@@ -22,15 +22,14 @@ The study has three linked aims:
 
 1. **Establish robust sequence-learning signatures** in the clinical SRTT data (structured vs random RT differences, including blue/green decomposition).
 2. **Test intervention-group differences in learning dynamics**, focusing on whether the structured-random separation evolves differently from day 1 to day 2 between groups.
-3. **Characterize explanatory mechanisms and robustness**, including non-linear trajectory structure, speed-accuracy coupling, and sensitivity to data-completeness constraints.
+3. **Characterize explanatory mechanisms and robustness**, including speed-accuracy coupling, session-structure sensitivity, and robustness to alternative time-trend specification.
 
 ### A priori hypotheses
 Based on the theoretical framework above, we formulated the following hypotheses:
 
 - **H1 (task-level learning):** Across participants, structured blocks (blue/green) will yield faster RT than random blocks (yellow), consistent with sequence-specific learning.
 - **H2 (dynamic group effect; primary):** Groups will differ in the **day-by-condition evolution** of RT, expressed as a Group x Day x Condition effect at block level.
-- **H3 (trajectory form):** Learning trajectories across blocks are expected to show non-linear structure; flexible models should fit better than a purely linear slope.
-- **H4 (strategy component):** Speed-accuracy coupling will contribute to observed performance dynamics and may differ between groups.
+- **H3 (strategy component):** Speed-accuracy coupling will contribute to observed performance dynamics and may differ between groups.
 
 To maximize interpretability and reduce overadjustment risk in a moderate clinical sample, confirmatory models used a minimal pre-specified adjustment set (`Age`, `fuglmayrshort_sum`, `MoCa_sum`), while broader covariate and moderator analyses were treated as secondary/exploratory.
 
