@@ -1,8 +1,8 @@
 outcome,n,formula
-SeqLearning_Index_all,69,SeqLearning_Index_all ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
-RT_Slope_All,69,RT_Slope_All ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
-RT_Delta_All,69,RT_Delta_All ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
-ErrorRate_All,69,ErrorRate_All ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
-IES,69,IES ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
-Retention_General,34,Retention_General ~ C(Group) + Age + fuglmayrshort_sum + MoCa_sum
-Retention_Sequence,34,Retention_Sequence ~ C(Group) + Age + fuglmayrshort_sum + MoCa_sum
+SeqLearning_Index_all,72,SeqLearning_Index_all ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
+RT_Slope_All,72,RT_Slope_All ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
+RT_Delta_All,72,RT_Delta_All ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
+ErrorRate_All,72,ErrorRate_All ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
+IES,72,IES ~ C(Group) * C(day) + Age + fuglmayrshort_sum + MoCa_sum
+Retention_General,36,Retention_General ~ C(Group) + Age + fuglmayrshort_sum + MoCa_sum
+Retention_Sequence,36,Retention_Sequence ~ C(Group) + Age + fuglmayrshort_sum + MoCa_sum

@@ -191,7 +191,12 @@ def build_inventory(meta: pd.DataFrame) -> tuple[pd.DataFrame, dict[int, dict[in
         folder = DATA_DIR / parse_pid_to_folder(pid)
         day_files = {}
         for day in (1, 2):
-            files = sorted(folder.glob(f"*_{day}_fertig.csv"))
+            # Some exports include an extra token before day number (e.g., *_FRA_2_fertig.csv).
+            patterns = [f"*_{day}_fertig.csv", f"*_FRA_{day}_fertig.csv"]
+            matches: list[Path] = []
+            for pat in patterns:
+                matches.extend(folder.glob(pat))
+            files = sorted({p.resolve() for p in matches})
             chosen = files[0] if files else None
             day_files[day] = chosen
             records.append(

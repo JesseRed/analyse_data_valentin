@@ -1,32 +1,32 @@
                               OLS Regression Results                             
 =================================================================================
-Dep. Variable:     SeqLearning_Index_all   R-squared:                       0.092
-Model:                               OLS   Adj. R-squared:                  0.004
-Method:                    Least Squares   F-statistic:                     1.649
-Date:                   Tue, 17 Feb 2026   Prob (F-statistic):              0.149
-Time:                           22:20:35   Log-Likelihood:                -369.07
-No. Observations:                     69   AIC:                             752.1
-Df Residuals:                         62   BIC:                             767.8
+Dep. Variable:     SeqLearning_Index_all   R-squared:                       0.091
+Model:                               OLS   Adj. R-squared:                  0.007
+Method:                    Least Squares   F-statistic:                     1.653
+Date:                   Tue, 17 Feb 2026   Prob (F-statistic):              0.147
+Time:                           23:39:40   Log-Likelihood:                -384.62
+No. Observations:                     72   AIC:                             783.2
+Df Residuals:                         65   BIC:                             799.2
 Df Model:                              6                                         
 Covariance Type:                     HC3                                         
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Intercept                    93.1407     83.889      1.110      0.267     -71.278     257.560
-C(Group)[T.B]                41.8040     18.109      2.309      0.021       6.312      77.296
-C(day)[T.2]                  28.1794     15.815      1.782      0.075      -2.818      59.177
-C(Group)[T.B]:C(day)[T.2]   -44.6672     27.417     -1.629      0.103     -98.403       9.069
-Age                          -0.6177      0.692     -0.893      0.372      -1.973       0.738
-fuglmayrshort_sum             0.9153      3.512      0.261      0.794      -5.969       7.799
-MoCa_sum                     -0.7138      1.537     -0.464      0.642      -3.727       2.299
+Intercept                   107.2780     78.940      1.359      0.174     -47.441     261.997
+C(Group)[T.B]                39.8833     17.683      2.255      0.024       5.225      74.542
+C(day)[T.2]                  29.0652     14.994      1.939      0.053      -0.322      58.452
+C(Group)[T.B]:C(day)[T.2]   -48.9407     26.625     -1.838      0.066    -101.125       3.244
+Age                          -0.7624      0.642     -1.187      0.235      -2.021       0.496
+fuglmayrshort_sum             0.1058      3.511      0.030      0.976      -6.775       6.987
+MoCa_sum                     -0.4658      1.515     -0.307      0.758      -3.435       2.503
 ==============================================================================
-Omnibus:                        1.550   Durbin-Watson:                   1.582
-Prob(Omnibus):                  0.461   Jarque-Bera (JB):                1.276
-Skew:                           0.333   Prob(JB):                        0.528
-Kurtosis:                       2.971   Cond. No.                     1.03e+03
+Omnibus:                        1.897   Durbin-Watson:                   1.646
+Prob(Omnibus):                  0.387   Jarque-Bera (JB):                1.591
+Skew:                           0.364   Prob(JB):                        0.451
+Kurtosis:                       2.983   Cond. No.                     1.00e+03
 ==============================================================================
 
 Notes:
 [1] Standard Errors are heteroscedasticity robust (HC3)
-[2] The condition number is large, 1.03e+03. This might indicate that there are
+[2] The condition number is large,  1e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.

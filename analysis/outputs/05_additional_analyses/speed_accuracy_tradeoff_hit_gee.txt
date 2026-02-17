@@ -1,23 +1,23 @@
                  Generalized Linear Model Regression Results                  
 ==============================================================================
-Dep. Variable:                  isHit   No. Observations:                64001
-Model:                            GLM   Df Residuals:                    63993
+Dep. Variable:                  isHit   No. Observations:                64682
+Model:                            GLM   Df Residuals:                    64674
 Model Family:                Binomial   Df Model:                            7
 Link Function:                  Logit   Scale:                          1.0000
-Method:                          IRLS   Log-Likelihood:                -14320.
-Date:                Tue, 17 Feb 2026   Deviance:                       28641.
-Time:                        22:20:51   Pearson chi2:                 6.56e+04
-No. Iterations:                     6   Pseudo R-squ. (CS):            0.01521
+Method:                          IRLS   Log-Likelihood:                -14441.
+Date:                Tue, 17 Feb 2026   Deviance:                       28883.
+Time:                        23:40:49   Pearson chi2:                 6.61e+04
+No. Iterations:                     6   Pseudo R-squ. (CS):            0.01484
 Covariance Type:              cluster                                         
 ==================================================================================================
                                      coef    std err          z      P>|z|      [0.025      0.975]
 --------------------------------------------------------------------------------------------------
-Intercept                          2.6824      0.177     15.147      0.000       2.335       3.030
-C(Group)[T.B]                     -0.6122      0.560     -1.094      0.274      -1.709       0.485
-C(day)[T.2]                        0.6782      0.151      4.488      0.000       0.382       0.974
-C(condition)[T.structured]         0.1469      0.082      1.799      0.072      -0.013       0.307
-zRT                                0.1299      0.083      1.571      0.116      -0.032       0.292
-C(Group)[T.B]:zRT                  0.3276      0.108      3.020      0.003       0.115       0.540
-C(day)[T.2]:zRT                   -0.1607      0.082     -1.970      0.049      -0.320      -0.001
-C(condition)[T.structured]:zRT    -0.1108      0.069     -1.595      0.111      -0.247       0.025
+Intercept                          2.6813      0.177     15.151      0.000       2.334       3.028
+C(Group)[T.B]                     -0.6094      0.554     -1.100      0.271      -1.695       0.476
+C(day)[T.2]                        0.6830      0.158      4.314      0.000       0.373       0.993
+C(condition)[T.structured]         0.1461      0.081      1.806      0.071      -0.012       0.305
+zRT                                0.1287      0.082      1.566      0.117      -0.032       0.290
+C(Group)[T.B]:zRT                  0.3034      0.110      2.766      0.006       0.088       0.518
+C(day)[T.2]:zRT                   -0.1595      0.078     -2.055      0.040      -0.312      -0.007
+C(condition)[T.structured]:zRT    -0.1101      0.068     -1.629      0.103      -0.243       0.022
 ==================================================================================================

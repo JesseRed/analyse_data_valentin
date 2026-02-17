@@ -4,10 +4,10 @@
 Serial Reaction Time Task (SRTT) performance is commonly summarized using endpoint metrics, which may miss clinically relevant learning dynamics. In post-stroke rehabilitation studies, intervention effects may emerge as changes in **how sequence-specific performance evolves over time**, rather than as a single static group difference. We therefore evaluated whether sequence-learning expression across two training days differed between intervention groups.
 
 ### Methods
-We analyzed a two-day, two-group post-stroke SRTT dataset (Group A: VR+SRTT; Group B: SRTT-only). Behavioral logs were linked to participant metadata and reaction times (RT) were reconstructed trial-wise from cumulative within-block timestamps. Primary RT analyses used correct trials with plausibility filtering (150–3000 ms) and within-participant robust trimming (median +/- 3*MAD). The primary inferential model was a block-level linear mixed model on log-RT with fixed effects `Group x Day x Condition` (structured vs random), block number, and a minimal adjustment set (`Age`, `fuglmayrshort_sum`, `MoCa_sum`), plus participant random intercept. Planned contrasts (estimated marginal means) quantified simple effects. Secondary endpoint-style analyses used HC3-robust OLS on participant-day outcomes. Robustness checks included sensitivity analyses addressing session structure and **time-trend specification**, blue/green sequence decomposition, and permutation tests.
+We analyzed a two-day, two-group post-stroke SRTT dataset (Group A: VR+SRTT; Group B: SRTT-only). Behavioral logs were linked to participant metadata and reaction times (RT) were reconstructed trial-wise from cumulative within-block timestamps. Primary RT analyses used correct trials with plausibility filtering (150–3000 ms) and within-participant robust trimming (median +/- 3*MAD). The primary inferential model was a block-level linear mixed model on log-RT with fixed effects `Group x Day x Condition` (structured vs random), block number, and a minimal adjustment set (`Age`, **S‑FMA**, `MoCa_sum`), plus participant random intercept. Planned contrasts (estimated marginal means) quantified simple effects. Secondary endpoint-style analyses used HC3-robust OLS on participant-day outcomes. Robustness checks included sensitivity analyses addressing session structure and **time-trend specification**, blue/green sequence decomposition, and permutation tests.
 
 ### Results
-Data from 43 participants were available in metadata; after prespecified manual PID exclusions (n=7), **N = 36** participants contributed behavioral logs (71 participant-day sessions; 35 participants with both days). Sequence-specific facilitation was robust in both groups (structured faster than random). In the **primary** block-level mixed model, the key group-related finding was a significant `Group x Day x Condition` interaction (p=0.006), indicating different day-to-day evolution of the structured-random RT separation between groups (8261 block observations; 35 participants). Planned contrasts showed that the structured advantage increased from day 1 to day 2 in Group A (about −4.7% to −9.0%), whereas it was stable in Group B (about −7.6% on both days). In secondary endpoint-style participant-day GLM analyses, the between-group contrast for `SeqLearning_Index_all` was positive and statistically significant (coef 41.8 ms, p=0.021), while the `Group x Day` interaction remained non-significant (p=0.103). Sensitivity analyses (119/120 block truncation, exclusion of the single long session, and alternative flexible time-trend specification) preserved direction and magnitude of primary dynamic contrasts.
+Data from 43 participants were available in metadata; after prespecified manual PID exclusions (n=7), **N = 36** participants contributed behavioral logs (**72** participant-day sessions; **36** participants with both days). Sequence-specific facilitation was robust in both groups (structured faster than random). In the **primary** block-level mixed model, the key group-related finding was a significant `Group x Day x Condition` interaction (p=0.002), indicating different day-to-day evolution of the structured-random RT separation between groups (8615 block observations; 36 participants). Planned contrasts showed that the structured advantage increased from day 1 to day 2 in Group A (−4.89% to −9.25%), whereas it was stable in Group B (−7.59% to −7.17%). In secondary endpoint-style participant-day GLM analyses, the between-group contrast for `SeqLearning_Index_all` was positive and statistically significant (coef 39.9 ms, p=0.024), while the `Group x Day` interaction remained non-significant (p=0.066). Sensitivity analyses (119/120 block truncation, exclusion of the single long session, and alternative flexible time-trend specification) preserved direction and magnitude of primary dynamic contrasts.
 
 ### Conclusions
 In this post-stroke SRTT dataset, the most robust intervention-related signal was **dynamic**: groups differed in the **day-by-condition evolution** of sequence-specific performance, not primarily in static endpoint differences. These findings support hierarchical, trajectory-aware modeling for rehabilitation motor-learning datasets and suggest that intervention effects may be better captured as changes in sequence-learning expression over time.
@@ -45,27 +45,31 @@ Based on the theoretical framework above, we formulated the following hypotheses
 - **H2 (dynamic group effect; primary):** Groups will differ in the **day-by-condition evolution** of RT, expressed as a Group x Day x Condition effect at block level.
 - **H3 (strategy component):** Speed-accuracy coupling will contribute to observed performance dynamics and may differ between groups.
 
-To maximize interpretability and reduce overadjustment risk in a moderate clinical sample, confirmatory models used a minimal pre-specified adjustment set (`Age`, `fuglmayrshort_sum`, `MoCa_sum`), while broader covariate and moderator analyses were treated as secondary/exploratory.
+To maximize interpretability and reduce overadjustment risk in a moderate clinical sample, confirmatory models used a minimal pre-specified adjustment set (`Age`, **S‑FMA**, `MoCa_sum`), while broader covariate and moderator analyses were treated as secondary/exploratory.
 
 Taken together, this framework positions intervention effects as potentially **dynamic and mechanistic** rather than purely endpoint-based. Demonstrating such dynamics would have practical implications for both clinical trial analysis strategies and the design of engagement-driven rehabilitation interventions.
 
 ## 3. Methods
 
 ### 3.1 Study design and procedure
-We analyzed data from a prospective, two‑group intervention study with **two consecutive training days**. Participants were randomized to either **Group A (VR intervention + SRTT)** or **Group B (control; SRTT only)**. In Group A, the SRTT was administered in a VR‑based training context with enriched feedback/engagement features, whereas Group B completed the same SRTT without VR; task demands and stimulus structure were otherwise equivalent between groups. Each participant completed a daily session on the stroke unit; breaks were permitted in case of fatigue and sessions were discontinued in case of adverse symptoms or non‑compliance, consistent with the study protocol described in `GR_210126.pdf`.
+We analyzed data from a prospective, two‑group intervention study with **two consecutive training days**. Participants were randomized to either **Group A (VR intervention + SRTT)** or **Group B (control; SRTT only)**. Randomization used a pre-generated **block randomization list** (planned N = 42) and, on the first intervention day, each participant was assigned by drawing the next allocation from this list, with allocation recorded at enrollment.
+
+In Group A, the reward-oriented VR game **preceded** the Serial Reaction Time Task (SRTT) and was implemented as a brief motivational and sensorimotor “warm‑up” in the acute stroke-unit setting. The VR module was designed to provide immediate, multimodal performance feedback and contingent reward, with adaptive task demands and investigator guidance. Conceptually, this sequencing was intended to (i) increase engagement and willingness to persist in a repetitive laboratory-style task, (ii) reduce initial “getting started” effects by shifting participants from a passive ward state into an active, externally oriented task mode, and (iii) potentially prime reward-related neuromodulatory states thought to facilitate procedural learning and consolidation.
+
+Importantly, we also anticipated that such a primer can be effortful in the acute stage and may therefore have dual, potentially opposing consequences for subsequent SRTT performance: while increased arousal/motivation and improved sensorimotor calibration could enhance learning, preceding VR exposure could also induce fatigue and transiently reduce speed and/or learning rate. Rather than treating this as a confound to be eliminated, the study design aimed to capture the **net effect** of a clinically realistic sequencing (VR first, then standardized learning assessment) under acute conditions. Accordingly, any observed differences in SRTT learning should be interpreted as reflecting the combined influence of motivational priming and potential fatigue, i.e., the net behavioral consequence of implementing VR immediately prior to training in early post-stroke care. Each participant completed a daily session on the stroke unit; breaks were permitted in case of fatigue and sessions were discontinued in case of adverse symptoms or non‑compliance, consistent with the study protocol.
 
 ### 3.2 Participants and baseline measures
-The participant roster and baseline variables were provided in the metadata table `Datensatz_Round_2.csv` (semicolon‑separated). Group assignment was taken from the column `Group` (A/B).
+The participant roster and baseline variables (demographic and clinical characteristics) were obtained from the study database and routine clinical documentation. Group assignment followed the randomized study arm (Group A vs Group B) as recorded at enrollment using the pre-generated block randomization list.
 
 #### 3.2.1 Sample and prespecified data screening
-A total of **43** patients were available in the metadata table. Before analysis, we applied a manually configurable PID-exclusion list (defined in `analysis/analysis_config.py`) to exclude participants from all analyses; in the present run the excluded PIDs were **2, 7, 13, 26, 27, 32, 38** (n=7). After exclusions, **N = 36** participants remained in the metadata roster. Behavioral log files were available for **36** day‑1 sessions and **35** day‑2 sessions (71 participant‑day sessions total), with **35** participants providing logs on both days and contributing to retention outcomes. During preprocessing, SRT recordings were screened according to predefined quality criteria at the file and trial level (schema compliance, monotonicity/integrity of within-block timestamps, plausibility filtering, and robust outlier handling; see Section 3.5). Complete-case availability of the minimal covariates further determined the analytic sample used in each inferential model.
+A total of **40** patients were available in the metadata table. Before analysis, we applied a manually configurable PID-exclusion list (defined in `analysis/analysis_config.py`) to exclude participants from all analyses; in the present run the excluded PIDs were **2, 7, 13, 26, 27, 32, 38** (n=7). After exclusions, **N = 36** participants remained in the metadata roster. Behavioral log files were available for **36** day‑1 sessions and **36** day‑2 sessions (**72** participant‑day sessions total), with **36** participants providing logs on both days and contributing to retention outcomes. During preprocessing, SRT recordings were screened according to predefined quality criteria at the file and trial level (schema compliance, monotonicity/integrity of within-block timestamps, plausibility filtering, and robust outlier handling; see Section 3.5). Complete-case availability of the minimal covariates further determined the analytic sample used in each inferential model.
 
 #### 3.2.2 Baseline demographic and clinical characteristics
-Baseline demographic and clinical characteristics of the included two‑day sample (participants with both day files; N = 35) are summarized in **Table 1**. Groups were broadly comparable in age, education category, and body mass index. Age was 66.32 ± 8.82 years in Group A (n = 19) versus 67.44 ± 8.67 years in Group B (n = 16) (Welch t-test p = 0.708; range overall 50–89). Education category (apprenticeship / university degree / other or unknown) did not differ between groups (chi-square p = 0.556), and body mass index was similar (Welch t-test p = 0.869). Sex distribution differed numerically (female: 2/19 vs 7/16; Fisher’s exact p = 0.050) and was therefore retained as a descriptive baseline characteristic rather than a matched parameter.
+Baseline demographic and clinical characteristics of the included two‑day sample (participants with both day files; N = 36) are summarized in **Table 1**. Groups were broadly comparable in age and education category. Age was 66.32 ± 8.82 years in Group A (n = 19) versus 67.24 ± 8.44 years in Group B (n = 17) (Welch t-test p = 0.751; range overall 50–89). Education category (8–10th grade / Abitur / apprenticeship / university degree) did not differ between groups (chi-square p = 0.115). Sex distribution differed numerically (female: 2/19 vs 7/17; Fisher’s exact p = 0.055) and was therefore retained as a descriptive baseline characteristic rather than a matched parameter.
 
 For confirmatory (primary) models, we used a **minimal pre-specified adjustment set**:
 - `Age`
-- `fuglmayrshort_sum` (motor impairment / function)
+- **shortened Fugl‑Meyer Assessment** (**S‑FMA**; short 6‑item upper-limb score) to quantify baseline motor impairment
 - `MoCa_sum` (cognitive status)
 
 Additional baseline variables (e.g., AES, GDS, MORE, NIHSS, TSS, EQ5D, sports activity, depression history, gender) were retained for **secondary/exploratory** analyses only.
@@ -151,7 +155,7 @@ with:
 - Group: A vs B
 - Day: 1 vs 2
 - Condition: structured vs random
-- Covariates (minimal set): Age, fuglmayrshort_sum, MoCa_sum
+- Covariates (minimal set): Age, **S‑FMA**, MoCa_sum
 - Random effects: participant‑level random intercept
 
 The log‑RT scale was used to stabilize variance and allow ratio‑scale interpretation. Planned contrasts (estimated marginal means and simple effects) were computed from the fixed‑effect covariance matrix (delta method) at mean covariate values and mean block number, including structured−random within each group/day and day‑to‑day changes within each group/condition.
@@ -161,7 +165,7 @@ To enable comparison with common endpoint analyses, we fitted heteroscedasticity
 - Day‑varying outcomes: `Outcome ~ Group × Day + covariates`
 - Retention outcomes: `Outcome ~ Group + covariates`
 
-Covariates in these confirmatory endpoint models used the same minimal set as the primary mixed model (Age, fuglmayrshort_sum, MoCa_sum). Extended covariate sets were evaluated only in exploratory/sensitivity analyses.
+Covariates in these confirmatory endpoint models used the same minimal set as the primary mixed model (Age, **S‑FMA**, MoCa_sum). Extended covariate sets were evaluated only in exploratory/sensitivity analyses.
 
 #### 3.7.3 Additional analyses (mechanistic and robustness)
 We conducted the following pre‑defined extensions:
@@ -197,23 +201,23 @@ The study protocol received ethics approval as documented in `GR_210126.pdf`, an
 ## 4. Results
 
 ### 4.1 Sample, data completeness, and preprocessing
-A total of **N = 43** participants were available in the metadata table. After applying prespecified manual PID exclusions (2, 7, 13, 26, 27, 32, 38), **N = 36** participants remained. Behavioral SRTT data were identified for **36** day‑1 files and **35** day‑2 files, yielding **71 participant‑day sessions**; **N = 35** participants provided both day files and were included in retention outcomes. For the primary block-level mixed model, complete-case availability of the minimal covariates yielded **35** participants (No. Groups = 35) contributing **8261** block observations. For endpoint-style GLMs, complete-case availability yielded **n = 69** participant‑day observations for day‑varying outcomes and **n = 34** participants for retention outcomes.
+A total of **N = 43** participants were available in the metadata table. After applying prespecified manual PID exclusions (2, 7, 13, 26, 27, 32, 38), **N = 36** participants remained. Behavioral SRTT data were identified for **36** day‑1 files and **36** day‑2 files, yielding **72 participant‑day sessions**; **N = 36** participants provided both day files and were included in retention outcomes. For the primary block-level mixed model, complete-case availability of the minimal covariates yielded **36** participants (No. Groups = 36) contributing **8615** block observations. For endpoint-style GLMs, complete-case availability yielded **n = 72** participant‑day observations for day‑varying outcomes and **n = 36** participants for retention outcomes.
 
-Baseline demographic and clinical characteristics of the included sample are shown in **Table 1**. Groups were comparable at baseline (age, sex, education, BMI; all p > 0.20), supporting interpretation of group differences in task dynamics as intervention-related rather than driven by major demographic imbalance.
+Baseline demographic and clinical characteristics of the included sample are shown in **Table 1**. Groups were broadly comparable at baseline (age p = 0.751; education p = 0.115). Sex distribution differed numerically (Fisher’s exact p = 0.055) and is therefore treated as descriptive rather than as evidence of baseline imbalance.
 
-Reaction times (RTs) were reconstructed trial‑wise from the cumulative timestamp (“Time Since Block start”) by within‑block differencing and converted to milliseconds. Primary RT analyses used correct responses (`isHit = 1`). Outliers and implausible values were handled using (i) plausibility filtering (**150–3000 ms**), and (ii) within‑participant robust trimming based on the median ± 3×MAD rule within PID×day×condition. In total, **51,537 / 64,509** correct trials were retained for primary RT analyses after MAD‑trimming.
+Reaction times (RTs) were reconstructed trial‑wise from the cumulative timestamp (“Time Since Block start”) by within‑block differencing and converted to milliseconds. Primary RT analyses used correct responses (`isHit = 1`). Outliers and implausible values were handled using (i) plausibility filtering (**150–3000 ms**), and (ii) within‑participant robust trimming based on the median ± 3×MAD rule within PID×day×condition. In total, **52,055 / 65,401** correct trials were retained for primary RT analyses after MAD‑trimming.
 
-**Data completeness.** The canonical session length in this dataset was **952 rows / 119 blocks** for **69/71** sessions; two sessions deviated from the canonical structure. Because the modal block count differed from the PDF expectation (120 blocks), we explicitly tested robustness to truncation (119 vs 120 blocks) and to excluding the single long session (see Section 4.6 and Supplementary Table S1).
+**Data completeness.** The canonical session length in this dataset was **952 rows / 119 blocks** for **69/72** sessions; three sessions deviated from the canonical structure. Because the modal block count differed from the PDF expectation (120 blocks), we explicitly tested robustness to truncation (119 vs 120 blocks) and to excluding the single long session (see Section 4.6 and Supplementary Table S1).
 
 ### 4.2 Descriptive performance and learning indices
-Performance was summarized per participant and day (participant‑day level) using the pre‑specified outcomes: general learning (`RT_Slope_All`, `RT_Delta_All`), sequence learning (`SeqLearning_Index_all = meanRT_random − meanRT_structured`), accuracy (`ErrorRate_All`), and inverse efficiency (`IES`). Unless otherwise stated, primary learning and retention inferences refer to the complete two-day cohort (N = 34); descriptive summaries based on all available participant‑day files can therefore vary in sample size by day.
+Performance was summarized per participant and day (participant‑day level) using the pre‑specified outcomes: general learning (`RT_Slope_All`, `RT_Delta_All`), sequence learning (`SeqLearning_Index_all = meanRT_random − meanRT_structured`), accuracy (`ErrorRate_All`), and inverse efficiency (`IES`). Unless otherwise stated, primary learning and retention inferences refer to the complete two-day cohort (N = 36); descriptive summaries based on all available participant‑day files can therefore vary in sample size by day.
 
 Across groups, structured blocks were faster than random blocks and the structured advantage tended to be larger on day 2 than day 1 (Figure 1; Table 3).
 
 **Figure 1 (recommended).** Block‑wise RT trajectories by day, condition (structured vs random), and group (A vs B). Suggested file: `analysis/outputs/04_figures/qc_block_trajectory_group_condition_ci.png`.
 
 ### 4.3 Primary hypothesis test: dynamic sequence‑learning expression differs by group (block‑level mixed model)
-To test whether the intervention groups differed in how sequence‑specific performance evolved from day 1 to day 2, we fitted a linear mixed model to block‑level log‑RT (`logRT`) with a participant random intercept. Fixed effects included `Group × day × condition` (structured vs random), block number, and the pre‑specified minimal adjustment set (**Age, fuglmayrshort_sum, MoCa_sum**).
+To test whether the intervention groups differed in how sequence‑specific performance evolved from day 1 to day 2, we fitted a linear mixed model to block‑level log‑RT (`logRT`) with a participant random intercept. Fixed effects included `Group × day × condition` (structured vs random), block number, and the pre‑specified minimal adjustment set (**Age, S‑FMA, MoCa_sum**).
 
 #### 4.3.1 Main fixed effects (across groups)
 Across groups, performance was faster on day 2 than on day 1 and faster in structured than random blocks (Table 3):
@@ -221,28 +225,28 @@ Across groups, performance was faster on day 2 than on day 1 and faster in struc
 - **Structured vs Random**: structured blocks were reliably faster than random blocks within each group/day (all confidence intervals excluded 0 on the log scale; Table 3).
 
 #### 4.3.2 Group‑dependent dynamics (core result)
-The critical finding was a **group difference in the day‑to‑day change of the structured–random separation**, i.e., a **Group×day×condition interaction** (see `analysis/outputs/03_models/mixedlm_summary.txt`). Planned contrasts derived from the fitted model’s fixed‑effect variance–covariance matrix quantified these dynamics (Table 3; computed at mean covariate values and mean BlockNumber).
+The critical finding was a **group difference in the day‑to‑day change of the structured–random separation**, i.e., a **Group×day×condition interaction** (p = 0.002; see `analysis/outputs/03_models/mixedlm_summary.txt`). Planned contrasts derived from the fitted model’s fixed‑effect variance–covariance matrix quantified these dynamics (Table 3; computed at mean covariate values and mean BlockNumber).
 
 **Structured–random separation within each group/day (RT ratio; negative % indicates faster structured blocks):**
-- **Group A**: day 1 **−4.71%** (95% CI −6.25% to −3.15%), day 2 **−9.02%** (−10.48% to −7.53%)
-- **Group B**: day 1 **−7.57%** (−9.06% to −6.05%), day 2 **−7.59%** (−9.17% to −5.98%)
+- **Group A**: day 1 **−4.89%** (95% CI −6.41% to −3.35%), day 2 **−9.25%** (−10.69% to −7.78%)
+- **Group B**: day 1 **−7.59%** (−9.10% to −6.05%), day 2 **−7.17%** (−8.74% to −5.59%)
 
 Thus, the structured advantage **increased from day 1 to day 2 in Group A**, whereas it was **similar/slightly reduced in Group B**, yielding the observed group‑dependent day‑by‑condition dynamics.
 
 **Figure 2 (recommended).** Model‑based simple effects: structured–random separation (with 95% CI) for each group and day (derived from Table 3).
 
 ### 4.4 Secondary analyses: endpoint-style group effects (participant‑day GLM)
-For comparison with common endpoint analyses, we estimated heteroscedasticity‑robust OLS models (HC3) at the participant‑day level. Confirmatory models used the same minimal adjustment set (**Age, fuglmayrshort_sum, MoCa_sum**) and `Group × day` interactions for day‑varying outcomes; complete-case availability yielded **n = 69** participant‑day observations for these models.
+For comparison with common endpoint analyses, we estimated heteroscedasticity‑robust OLS models (HC3) at the participant‑day level. Confirmatory models used the same minimal adjustment set (**Age, S‑FMA, MoCa_sum**) and `Group × day` interactions for day‑varying outcomes; complete-case availability yielded **n = 72** participant‑day observations for these models.
 
-Across endpoint outcomes, most group effects remained small and imprecise (Table 2), illustrating the lower sensitivity and greater susceptibility to chance findings when repeated-measures structure is collapsed into participant-day summaries. For the aggregate sequence‑learning index (`SeqLearning_Index_all`), the group main effect (B vs A) was positive and statistically significant (coef 41.80 ms, 95% CI 6.31 to 77.30, p = 0.021), while the `Group×day` interaction was not significant (p = 0.103).
+Across endpoint outcomes, most group effects remained small and imprecise (Table 2), illustrating the lower sensitivity and greater susceptibility to chance findings when repeated-measures structure is collapsed into participant-day summaries. For the aggregate sequence‑learning index (`SeqLearning_Index_all`), the group main effect (B vs A) was positive and statistically significant (coef 39.88 ms, 95% CI 5.23 to 74.54, p = 0.024), while the `Group×day` interaction was not significant (p = 0.066).
 
-Importantly, endpoint-style models are treated as **secondary/descriptive** rather than as the primary evidence for an intervention effect. Two‑sided permutation tests for endpoint-style between‑group contrasts (day‑2 sequence learning and retention) were not significant (Supplementary Table S2), whereas the primary hierarchical mixed model provides a substantially more stable inferential target by leveraging within-participant block-level information (Section 4.3; Group×Day×Condition p = 0.006).
+Importantly, endpoint-style models are treated as **secondary/descriptive** rather than as the primary evidence for an intervention effect. Two‑sided permutation tests for endpoint-style between‑group contrasts (day‑2 sequence learning and retention) were not significant (Supplementary Table S2), whereas the primary hierarchical mixed model provides a substantially more stable inferential target by leveraging within-participant block-level information (Section 4.3; Group×Day×Condition p = 0.002).
 
 ### 4.5 Mechanistic and robustness analyses supporting the primary interpretation
 
 #### 4.5.1 Time-trend robustness of primary contrasts
 As a robustness check, we repeated the primary planned contrasts under an alternative, flexible specification of the block-wise time trend (`bs(BlockNumber, df=4)`) while preserving the same fixed-effect and random-intercept structure. Flexible time trends improved overall fit metrics; however, primary Group × Day × Condition contrast estimates were **materially unchanged** (Supplementary Table S4).
-The explicit DoD contrast remained nearly identical across specifications: linear model DoD log-effect = -0.0461 (about -4.50%, p = 0.0062) versus flexible model DoD log-effect = -0.0468 (about -4.57%, p = 0.0053).
+The explicit DoD contrast remained nearly identical across specifications: linear model DoD log-effect = -0.0513 (about -5.01%, p = 0.0021) versus flexible model DoD log-effect = -0.0521 (about -5.08%, p = 0.0018).
 
 #### 4.5.2 Blue vs green sequences analyzed separately
 When separating structured sequences by color, both **blue** and **green** blocks were faster than **yellow** (random) blocks across groups and days, confirming that sequence‑specific facilitation was present for both repeating sequences. In a mixed model on log‑RT with `Group × day × sequence`, contrasts for blue−yellow and green−yellow were consistently negative (see `analysis/outputs/05_additional_analyses/blue_green_contrasts.csv`), supporting the interpretation that the primary mixed‑model result reflects sequence‑specific dynamics rather than a single idiosyncratic sequence type.
@@ -272,29 +276,29 @@ As confirmatory robustness checks on endpoint‑style between‑group difference
 **Note (interpretation):** Table 2 summarizes **secondary endpoint-style** models reported for comparability with common approaches. Inferences about intervention-related learning dynamics are based primarily on the **block-level mixed model** and planned contrasts in Table 3.
 | Outcome               |   Group effect B vs A (coef) | Group effect 95% CI   |   Group effect p |   Group×Day interaction (coef) | Group×Day 95% CI    | Group×Day p   |
 |:----------------------|-----------------------------:|:----------------------|-----------------:|-------------------------------:|:--------------------|:--------------|
-| ErrorRate_All         |                    0.0196151 | [-0.028, 0.067]       |            0.42  |                     -0.0266408 | [-0.097, 0.044]     | 0.459         |
-| IES                   |                   60.973     | [-171.634, 293.580]   |            0.607 |                    -43.1465    | [-357.552, 271.259] | 0.788         |
-| RT_Delta_All          |                   33.4643    | [-69.654, 136.583]    |            0.525 |                    -28.7908    | [-139.758, 82.176]  | 0.611         |
-| RT_Slope_All          |                   -0.247279  | [-1.135, 0.640]       |            0.585 |                      0.341997  | [-0.749, 1.433]     | 0.539         |
-| Retention_General     |                   38.3055    | [-75.425, 152.036]    |            0.509 |                    nan         | NA                  | NA            |
-| Retention_Sequence    |                   33.6114    | [-49.246, 116.469]    |            0.427 |                    nan         | NA                  | NA            |
-| SeqLearning_Index_all |                   41.804     | [6.312, 77.296]       |            0.021 |                    -44.6672    | [-98.403, 9.069]    | 0.103         |
+| ErrorRate_All         |                    0.0139408 | [-0.034, 0.061]       |            0.565 |                     -0.0213997 | [-0.090, 0.047]     | 0.542         |
+| IES                   |                   59.313     | [-164.317, 282.943]   |            0.603 |                      6.08168   | [-304.967, 317.130] | 0.969         |
+| RT_Delta_All          |                   44.0083    | [-55.734, 143.751]    |            0.387 |                    -49.4608    | [-164.883, 65.962]  | 0.401         |
+| RT_Slope_All          |                   -0.35715   | [-1.255, 0.540]       |            0.435 |                      0.60301   | [-0.569, 1.775]     | 0.313         |
+| Retention_General     |                   81.5545    | [-40.169, 203.278]    |            0.189 |                    nan         | NA                  | NA            |
+| Retention_Sequence    |                   32.3117    | [-46.080, 110.703]    |            0.419 |                    nan         | NA                  | NA            |
+| SeqLearning_Index_all |                   39.8833    | [5.225, 74.542]       |            0.024 |                    -48.9407    | [-101.125, 3.244]   | 0.066         |
 
 ### Table 3. Mixed‑model planned contrasts (ratio scale)
 | Effect                  | Group   | Day   | Condition   |   log-diff |         SE | ratio_fmt            | pct_fmt                    |
 |:------------------------|:--------|:------|:------------|-----------:|-----------:|:---------------------|:---------------------------|
-| structured_minus_random | A       | 1.0   | -           | -0.0482669 | 0.00830435 | 0.953 [0.937, 0.969] | -4.71% [-6.25%, -3.15%]    |
-| structured_minus_random | A       | 2.0   | -           | -0.0945421 | 0.0082705  | 0.910 [0.895, 0.925] | -9.02% [-10.48%, -7.53%]   |
-| structured_minus_random | B       | 1.0   | -           | -0.0787095 | 0.00829501 | 0.924 [0.909, 0.939] | -7.57% [-9.06%, -6.05%]    |
-| structured_minus_random | B       | 2.0   | -           | -0.0789269 | 0.00878733 | 0.924 [0.908, 0.940] | -7.59% [-9.17%, -5.98%]    |
-| day2_minus_day1         | A       | -     | random      | -0.0974089 | 0.0101972  | 0.907 [0.889, 0.925] | -9.28% [-11.08%, -7.45%]   |
-| day2_minus_day1         | A       | -     | structured  | -0.143684  | 0.00577936 | 0.866 [0.856, 0.876] | -13.38% [-14.36%, -12.40%] |
-| day2_minus_day1         | B       | -     | random      | -0.119531  | 0.0105476  | 0.887 [0.869, 0.906] | -11.27% [-13.08%, -9.41%]  |
-| day2_minus_day1         | B       | -     | structured  | -0.119749  | 0.00606268 | 0.887 [0.877, 0.898] | -11.29% [-12.33%, -10.23%] |
-| B_minus_A               | -       | 1.0   | random      |  0.0806322 | 0.102073   | 1.084 [0.887, 1.324] | 8.40% [-11.26%, 32.40%]    |
-| B_minus_A               | -       | 1.0   | structured  |  0.0501896 | 0.101727   | 1.051 [0.861, 1.283] | 5.15% [-13.86%, 28.35%]    |
-| B_minus_A               | -       | 2.0   | random      |  0.0585098 | 0.102105   | 1.060 [0.868, 1.295] | 6.03% [-13.20%, 29.52%]    |
-| B_minus_A               | -       | 2.0   | structured  |  0.074125  | 0.101738   | 1.077 [0.882, 1.315] | 7.69% [-11.78%, 31.46%]    |
+| structured_minus_random | A       | 1.0   | -           | -0.050138  | 0.00820237 | 0.951 [0.936, 0.967] | -4.89% [-6.41%, -3.35%]    |
+| structured_minus_random | A       | 2.0   | -           | -0.0970275 | 0.00817014 | 0.908 [0.893, 0.922] | -9.25% [-10.69%, -7.78%]   |
+| structured_minus_random | B       | 1.0   | -           | -0.0789088 | 0.00841948 | 0.924 [0.909, 0.940] | -7.59% [-9.10%, -6.05%]    |
+| structured_minus_random | B       | 2.0   | -           | -0.0744485 | 0.00865863 | 0.928 [0.913, 0.944] | -7.17% [-8.74%, -5.59%]    |
+| day2_minus_day1         | A       | -     | random      | -0.10027   | 0.0100722  | 0.905 [0.887, 0.923] | -9.54% [-11.31%, -7.74%]   |
+| day2_minus_day1         | A       | -     | structured  | -0.14716   | 0.00570973 | 0.863 [0.854, 0.873] | -13.68% [-14.64%, -12.71%] |
+| day2_minus_day1         | B       | -     | random      | -0.0979915 | 0.0105058  | 0.907 [0.888, 0.926] | -9.33% [-11.18%, -7.45%]   |
+| day2_minus_day1         | B       | -     | structured  | -0.0935312 | 0.00599383 | 0.911 [0.900, 0.921] | -8.93% [-9.99%, -7.85%]    |
+| B_minus_A               | -       | 1.0   | random      |  0.0800797 | 0.0998626  | 1.083 [0.891, 1.318] | 8.34% [-10.92%, 31.76%]    |
+| B_minus_A               | -       | 1.0   | structured  |  0.0513089 | 0.0995084  | 1.053 [0.866, 1.279] | 5.26% [-13.39%, 27.93%]    |
+| B_minus_A               | -       | 2.0   | random      |  0.0823584 | 0.0998741  | 1.086 [0.893, 1.321] | 8.58% [-10.72%, 32.06%]    |
+| B_minus_A               | -       | 2.0   | structured  |  0.104937  | 0.0995091  | 1.111 [0.914, 1.350] | 11.06% [-8.62%, 34.98%]    |
 
 ---
 
@@ -311,7 +315,7 @@ First, the dataset showed clear and robust **sequence-specific learning signatur
 
 Second, the most informative group-related signal was **dynamic rather than static**. In block-level mixed modeling, the critical `Group x Day x Condition` interaction indicated that the day-to-day evolution of the structured-random separation differed between groups. Planned contrasts showed that the structured advantage increased from day 1 to day 2 in Group A, whereas it remained relatively stable (or slightly reduced) in Group B.
 
-Third, endpoint-style participant-level contrasts were less decisive. Under the minimal adjustment set (`Age`, `fuglmayrshort_sum`, `MoCa_sum`), the group effect for `SeqLearning_Index_all` was positive and statistically significant (p = 0.021), but the corresponding `Group x Day` interaction was not significant. Endpoint permutation tests for day‑2 contrasts and retention remained null. Together, this pattern underscores that intervention effects are better represented as **changes in learning expression over time** than as single endpoint offsets.
+Third, endpoint-style participant-level contrasts were less decisive. Under the minimal adjustment set (`Age`, **S‑FMA**, `MoCa_sum`), the group effect for `SeqLearning_Index_all` was positive and statistically significant (p = 0.021), but the corresponding `Group x Day` interaction was not significant. Endpoint permutation tests for day‑2 contrasts and retention remained null. Together, this pattern underscores that intervention effects are better represented as **changes in learning expression over time** than as single endpoint offsets.
 
 ### 5.2 Interpretation within the theoretical framework
 Our interpretation aligns with a framework that combines implicit sequence learning, motor-memory dynamics, and intervention-related modulation of engagement/reward processes.
@@ -319,6 +323,8 @@ Our interpretation aligns with a framework that combines implicit sequence learn
 In classical SRTT terms, a structured-random RT advantage reflects sequence-specific knowledge expression. The present results extend this by showing that group differences are most pronounced in the **trajectory** of this advantage across days. This pattern is compatible with the notion that interventions may influence not only immediate performance but also how learned structure is expressed at re-exposure (i.e., between-day expression/consolidation-like dynamics).
 
 The additional speed-accuracy analyses support this interpretation. Significant error-rate moderation of RT and a group-dependent RT-hit relationship indicate that response strategy (criterion setting) likely contributed to observed performance patterns. In other words, the intervention signal may include both sequence-learning expression and strategic control components, which is plausible in motivated, game-like training contexts.
+
+Finally, because the VR module was deliberately scheduled **immediately before** the SRTT as a motivational and sensorimotor primer in an acute stroke-unit setting, the observed between-group differences should be interpreted as the **net effect** of this clinically realistic sequencing. Specifically, any apparent benefit in SRTT learning dynamics could reflect increased readiness/engagement and reward-related priming, whereas any apparent attenuation could reflect VR-induced effort and fatigue; the design intentionally quantifies the combined behavioral consequence of implementing VR directly prior to standardized sequence-learning assessment.
 
 ### 5.3 Relation to existing literature
 The findings are consistent with prior motor-learning and rehabilitation literature in three ways:
@@ -351,6 +357,8 @@ Several limitations should be acknowledged.
 First, session structure differed from protocol expectation (modal 119 blocks rather than 120), likely reflecting implementation or logging differences. Although sensitivity analyses showed stable directional conclusions, this remains a design-to-data discrepancy.
 
 Second, sample size was moderate for subgroup and moderator discovery. As expected, exploratory interaction screens and stratified analyses yielded wide confidence intervals and no robust corrected signals.
+
+Third, the intervention sequence in Group A was deliberately implemented as **VR immediately preceding SRTT**. Because task order was not counterbalanced, the design cannot disentangle the separate contributions of motivational priming versus VR-induced fatigue to subsequent SRTT performance. Accordingly, group differences should be interpreted as the **net behavioral consequence** of a clinically realistic “warm‑up” implemented directly prior to standardized sequence-learning assessment in the acute setting.
 
 Third, despite randomization, observational covariate adjustment cannot fully resolve all potential confounding and measurement error in clinical scales. Relatedly, endpoint permutation tests were null for key day‑2 contrasts, supporting a cautious interpretation of endpoint-level group effects.
 

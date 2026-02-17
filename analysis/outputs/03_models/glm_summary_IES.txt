@@ -1,32 +1,32 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                    IES   R-squared:                       0.137
-Model:                            OLS   Adj. R-squared:                  0.053
-Method:                 Least Squares   F-statistic:                     1.490
-Date:                Tue, 17 Feb 2026   Prob (F-statistic):              0.197
-Time:                        22:20:35   Log-Likelihood:                -490.77
-No. Observations:                  69   AIC:                             995.5
-Df Residuals:                      62   BIC:                             1011.
+Dep. Variable:                    IES   R-squared:                       0.145
+Model:                            OLS   Adj. R-squared:                  0.066
+Method:                 Least Squares   F-statistic:                     1.571
+Date:                Tue, 17 Feb 2026   Prob (F-statistic):              0.170
+Time:                        23:39:40   Log-Likelihood:                -513.25
+No. Observations:                  72   AIC:                             1040.
+Df Residuals:                      65   BIC:                             1056.
 Df Model:                           6                                         
 Covariance Type:                  HC3                                         
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Intercept                  1416.6962    675.516      2.097      0.036      92.709    2740.684
-C(Group)[T.B]                60.9730    118.679      0.514      0.607    -171.634     293.580
-C(day)[T.2]                -128.3997    119.699     -1.073      0.283    -363.006     106.206
-C(Group)[T.B]:C(day)[T.2]   -43.1465    160.414     -0.269      0.788    -357.552     271.259
-Age                           2.4708      4.598      0.537      0.591      -6.542      11.483
-fuglmayrshort_sum            -4.9801     29.944     -0.166      0.868     -63.669      53.709
-MoCa_sum                    -21.6193     12.441     -1.738      0.082     -46.004       2.765
+Intercept                  1519.2378    609.232      2.494      0.013     325.165    2713.311
+C(Group)[T.B]                59.3130    114.099      0.520      0.603    -164.317     282.943
+C(day)[T.2]                -135.5665    114.358     -1.185      0.236    -359.703      88.570
+C(Group)[T.B]:C(day)[T.2]     6.0817    158.701      0.038      0.969    -304.967     317.130
+Age                           1.8638      4.211      0.443      0.658      -6.389      10.117
+fuglmayrshort_sum            -1.5554     29.694     -0.052      0.958     -59.755      56.644
+MoCa_sum                    -25.6389     12.263     -2.091      0.037     -49.674      -1.603
 ==============================================================================
-Omnibus:                        3.301   Durbin-Watson:                   0.863
-Prob(Omnibus):                  0.192   Jarque-Bera (JB):                2.832
-Skew:                           0.392   Prob(JB):                        0.243
-Kurtosis:                       2.392   Cond. No.                     1.03e+03
+Omnibus:                        3.118   Durbin-Watson:                   0.955
+Prob(Omnibus):                  0.210   Jarque-Bera (JB):                2.965
+Skew:                           0.434   Prob(JB):                        0.227
+Kurtosis:                       2.514   Cond. No.                     1.00e+03
 ==============================================================================
 
 Notes:
 [1] Standard Errors are heteroscedasticity robust (HC3)
-[2] The condition number is large, 1.03e+03. This might indicate that there are
+[2] The condition number is large,  1e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.

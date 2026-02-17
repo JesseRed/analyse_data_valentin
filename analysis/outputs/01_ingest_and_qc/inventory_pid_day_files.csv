@@ -31,8 +31,8 @@ PID,PID2,Group,day,folder_exists,n_candidate_files,selected_file,selected_file_r
 18,18,A,2,True,1,/home/ck/Code/analyse_data_valentin/data/18/GR_18_Hr_18_20250928_FRA_2_fertig.csv,952,True
 19,19,A,1,True,1,/home/ck/Code/analyse_data_valentin/data/19/GR_19_Fr_19_20251001_FRA_1_fertig.csv,952,True
 19,19,A,2,True,1,/home/ck/Code/analyse_data_valentin/data/19/GR_19_Hr_19_20251002_FRA_2_fertig.csv,952,True
-20,20,B,1,True,1,/home/ck/Code/analyse_data_valentin/data/20/GR_20_Hr._20_20250510_FRA_1_fertig.csv,952,False
-20,20,B,2,True,0,,0,False
+20,20,B,1,True,1,/home/ck/Code/analyse_data_valentin/data/20/GR_20_Hr._20_20250510_FRA_1_fertig.csv,952,True
+20,20,B,2,True,1,/home/ck/Code/analyse_data_valentin/data/20/GR_20_Hr _20_20240528_FRA_2_fertig.csv,936,True
 21,21,B,1,True,1,/home/ck/Code/analyse_data_valentin/data/21/GR_21_Fr_21_20250717_FRA_1_fertig.csv,952,True
 21,21,B,2,True,1,/home/ck/Code/analyse_data_valentin/data/21/GR_21_Fr_21_20250718_FRA_2_fertig.csv,952,True
 22,22,A,1,True,1,/home/ck/Code/analyse_data_valentin/data/22/GR_22_Hr_22_20250927_FRA_1_fertig.csv,952,True

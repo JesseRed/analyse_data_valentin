@@ -9,10 +9,10 @@
     38
   ],
   "inventory_rows": 72,
-  "trial_rows": 68704,
-  "block_rows": 8575,
-  "participant_day_rows": 71,
-  "retention_rows": 35,
+  "trial_rows": 69640,
+  "block_rows": 8692,
+  "participant_day_rows": 72,
+  "retention_rows": 36,
   "glm_models": 7,
   "mixed_model_success": true
 }
