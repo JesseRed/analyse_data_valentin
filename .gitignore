@@ -13,3 +13,9 @@ venv/
 .env/
 __pycache__/
 *.pyc
+
+# Data / outputs
+outputs/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
