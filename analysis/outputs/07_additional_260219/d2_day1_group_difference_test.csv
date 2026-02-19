@@ -1,0 +1,7 @@
+analysis,group_A_mean,group_A_sd,n_A,group_B_mean,group_B_sd,n_B,diff_BminusA,ci_low,ci_high,t_or_b,p_value
+Day 1 – unadjusted t-test,46.7,40.6,19,85.9,58.0,17,39.2,6.1,72.29,2.368,0.0237
+"Day 1 – adjusted (Age, FMA, MoCa)",,,,,,,40.02,4.56,75.49,,0.027
+Day 1 – adjusted + Gender,,,,,,,46.5,5.55,87.45,,0.026
+Day 2 – unadjusted t-test,75.8,50.3,19,66.0,60.1,17,-9.75,-46.2,26.71,-0.529,0.6
+"Day 2 – adjusted (Age, FMA, MoCa)",,,,,,,-9.2,-49.42,31.02,,0.654
+Day 2 – adjusted + Gender,,,,,,,-8.3,-53.11,36.52,,0.7167

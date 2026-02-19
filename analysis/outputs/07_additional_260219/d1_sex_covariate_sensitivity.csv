@@ -1,0 +1,6 @@
+model,term,estimate_ms,ci_low,ci_high,p_value,n
+Base (without sex),Group B−A (main effect),39.88,5.22,74.54,0.0241,72
+Base (without sex),Group×Day interaction,-48.94,-101.13,3.24,0.066,72
++ Sex (with Gender),Group B−A (main effect),43.57,7.35,79.79,0.0184,72
++ Sex (with Gender),Group×Day interaction,-48.94,-101.78,3.9,0.0695,72
++ Sex (with Gender),Gender coefficient,10.79,-23.85,45.43,0.5415,72

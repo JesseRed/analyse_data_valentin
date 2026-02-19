@@ -1,0 +1,4 @@
+parameter,label,n_obs,three_way_coef,three_way_se,three_way_p,dod_est,dod_se,dod_p,formula
+v_drift,Drift rate (information processing),120,-0.0013672184805328595,0.01299365985873439,0.9161996783984381,-0.0013672184805328595,0.01299365985873439,0.9161996783984381,v_drift ~ C(Group) * C(day) * C(condition) + Age + fuglmayrshort_sum + MoCa_sum
+a_boundary,Boundary separation (caution),120,-0.010047441867144657,0.011741693038257341,0.3921601998765569,-0.010047441867144657,0.011741693038257341,0.3921601998765569,a_boundary ~ C(Group) * C(day) * C(condition) + Age + fuglmayrshort_sum + MoCa_sum
+ter_nondecision_s,Non-decision time,120,0.05757583593845716,0.050656813413211224,0.25571130446786683,0.05757583593845716,0.050656813413211224,0.25571130446786683,ter_nondecision_s ~ C(Group) * C(day) * C(condition) + Age + fuglmayrshort_sum + MoCa_sum

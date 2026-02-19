@@ -1,0 +1,19 @@
+{
+  "excluded_pids": [
+    2,
+    7,
+    13,
+    26,
+    27,
+    32,
+    38
+  ],
+  "primary_covars": [
+    "Age",
+    "fuglmayrshort_sum",
+    "MoCa_sum"
+  ],
+  "n_trials_clean": 58364,
+  "n_ddm_cells": 120,
+  "n_participants_ddm": 36
+}

@@ -1,0 +1,10 @@
+{
+  "n_participants": 36,
+  "n_sessions": 72,
+  "n_observations": 8615,
+  "covars": [
+    "Age",
+    "fuglmayrshort_sum",
+    "MoCa_sum"
+  ]
+}
