@@ -1,3 +1,17 @@
+## Table 1. Baseline demographic characteristics (included sample)
+
+| Characteristic         | Group A (n=19)   | Group B (n=17)   | Total (n=36)   | p value   |
+|:-----------------------|:-----------------|:-----------------|:---------------|:----------|
+| Age, years             | 66.3 ± 8.8       | 67.2 ± 8.4       | 66.8 ± 8.5     | 0.751     |
+| Age range              | 50–84            | 54–89            | 50–89          |           |
+| Sex (Female)           | 2 (10.5%)        | 7 (41.2%)        | 9 (25.0%)      | 0.055     |
+| Sex (Male)             | 17 (89.5%)       | 10 (58.8%)       | 27 (75.0%)     |           |
+| Education              |                  |                  |                | 0.498     |
+| – School               | 6 (31.6%)        | 7 (41.2%)        | 13 (36.1%)     |           |
+| – Apprenticeship       | 5 (26.3%)        | 6 (35.3%)        | 11 (30.6%)     |           |
+| – University degree    | 8 (42.1%)        | 4 (23.5%)        | 12 (33.3%)     |           |
+| Body mass index, kg/m² | 26.8 ± 3.1       | 27.3 ± 5.5       | 27.0 ± 4.3     | 0.742     |
+
 ## Table 2. Primary group effects (adjusted GLM, HC3)
 
 | Outcome               |   Group effect B vs A (coef) | Group effect 95% CI   |   Group effect p |   Group×Day interaction (coef) | Group×Day 95% CI    | Group×Day p   |
