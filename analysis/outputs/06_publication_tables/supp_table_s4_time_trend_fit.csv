@@ -1,0 +1,4 @@
+model,formula,AIC,BIC,logLik,df_modelwc,n_obs,LLR,LLR_p
+linear,logRT ~ C(Group) * C(day) * C(condition) + BlockNumber + Age + fuglmayrshort_sum + MoCa_sum,-6447.104873888849,-6348.425494827459,3237.5524369444247,13,8506,,
+flexible_bs_df4,"logRT ~ C(Group) * C(day) * C(condition) + bs(BlockNumber, df=4) + Age + fuglmayrshort_sum + MoCa_sum",-6481.073256674041,-6361.24829638521,3257.5366283370204,16,8506,,
+comparison,flexible_vs_linear,,,,3,8506,39.96838278519135,1.0820791374044349e-08
