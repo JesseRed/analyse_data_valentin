@@ -6,3 +6,10 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+
+# Python venv
+.venv/
+venv/
+.env/
+__pycache__/
+*.pyc
